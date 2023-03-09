@@ -1,16 +1,18 @@
-import express, {Request, Response} from 'express'
+import express, {Request, Response, urlencoded} from 'express'
 import path from 'path'
 import cors from 'cors'
 
 const app = express()
 
 app.use(cors({
-    origin:'https://kucharsky.site',
     credentials:true
 }))
 
+app.use(express.json())
+
+
 app.get('/api/',(req:Request,res:Response)=>{
-    return res.json({
+    return res.send({
         status:'success' })
 })
 
