@@ -1,7 +1,15 @@
 import express, {Request, Response} from 'express'
 import path from 'path'
+import cors from 'cors'
 
 const app = express()
+
+app.use(
+    cors({
+        origin:'http://localhost:5173',
+        credentials:true
+    })
+)
 
 app.get('/api/',(req:Request,res:Response)=>{
     return res.json({
@@ -16,4 +24,4 @@ app.use(express.static(path.join(__dirname, '../../client/dist')));
     )
 );*/
 
-app.listen(4000,()=>console.log('listening on port 4000'))
+app.listen(1337,()=>console.log('listening on port 1337'))
