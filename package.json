@@ -1,0 +1,19 @@
+{
+  "name": "typescript_express_react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "client": "cd client && npm run dev",
+    "server": "cd server && npm run server",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "build_client": "cd client && npm run build",
+    "build_server": "cd server && npm run build",
+    "build": "npm run build_client && npm run build_server"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  }
+}
