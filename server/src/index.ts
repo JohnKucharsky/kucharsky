@@ -13,10 +13,10 @@ app.get('/api/',(req:Request,res:Response)=>{
 
 app.use(express.static(path.join(__dirname, '../../client/dist')));
 
-/*app.get('*', (req, res) =>
+app.get('*', (req, res) =>
     res.sendFile(
         path.resolve(__dirname, '../', '../', 'client', 'dist', 'index.html')
     )
-);*/
+);
 
 app.listen(1337,()=>console.log('listening on port 1337'))
