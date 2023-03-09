@@ -1,4 +1,4 @@
-import express, {Request, Response, urlencoded} from 'express'
+import express, {Request, Response} from 'express'
 import path from 'path'
 import cors from 'cors'
 
@@ -13,7 +13,7 @@ app.use(express.json())
 
 app.get('/api/',(req:Request,res:Response)=>{
     return res.send({
-        status:'success' })
+        status:'successf' })
 })
 
 app.use(express.static(path.join(__dirname, '../../client/dist')));
