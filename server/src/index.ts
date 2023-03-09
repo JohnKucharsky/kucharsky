@@ -5,15 +5,17 @@ import cors from 'cors'
 const app = express()
 
 app.use(cors({
+    origin:'https://kucharsky.site/',
     credentials:true
 }))
 
 app.get('/api/',(req:Request,res:Response)=>{
     return res.json({
-        status:'successdsfg' })
+        status:'success' })
 })
 
 app.use(express.static(path.join(__dirname, '../../client/dist')));
+
 
 /*app.get('*', (req, res) =>
     res.sendFile(
