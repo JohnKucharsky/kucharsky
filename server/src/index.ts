@@ -4,9 +4,7 @@ import cors from 'cors'
 
 const app = express()
 
-app.use(
-    cors()
-)
+app.use(cors())
 
 app.get('/api/',(req:Request,res:Response)=>{
     return res.json({
