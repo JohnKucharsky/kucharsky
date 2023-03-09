@@ -5,10 +5,7 @@ import cors from 'cors'
 const app = express()
 
 app.use(
-    cors({
-        origin:'http://localhost:5173',
-        credentials:true
-    })
+    cors()
 )
 
 app.get('/api/',(req:Request,res:Response)=>{
