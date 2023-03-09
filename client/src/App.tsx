@@ -22,7 +22,7 @@ f().catch((e:any)=>setError(JSON.stringify(e)))
     <div className="App">
         {value}
         {error}
-       voluptatem voluptates?
+       voluptatem voluptates? https://kucharsky.site/
     </div>
   )
 }

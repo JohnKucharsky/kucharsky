@@ -13,7 +13,7 @@ app.use(express.urlencoded({extended: false}))
 
 
 app.get('/api',(req:Request,res:Response)=>{
-    return res.send({
+    return res.status(200).json({
         status:'successf' })
 })
 
