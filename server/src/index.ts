@@ -5,7 +5,7 @@ import cors from 'cors'
 const app = express()
 
 app.use(cors({
-    origin:'https://kucharsky.site/',
+    origin:'https://kucharsky.site',
     credentials:true
 }))
 
