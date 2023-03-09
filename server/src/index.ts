@@ -11,7 +11,7 @@ app.use(cors({
 app.use(express.json())
 
 
-app.get('/api/',(req:Request,res:Response)=>{
+app.get('/api',(req:Request,res:Response)=>{
     return res.send({
         status:'successf' })
 })
