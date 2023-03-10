@@ -1,19 +1,15 @@
 import express, {Request, Response} from 'express'
 import path from 'path'
-import cors from 'cors'
 
 const app = express()
 
-app.use(cors({
-    credentials:true
-}))
 
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
 
 app.get('/api',(req:Request,res:Response)=>{
-    return res.status(200).json({
+     res.status(200).json({
         status:'successf' })
 })
 

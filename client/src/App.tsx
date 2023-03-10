@@ -7,7 +7,7 @@ function App() {
 
     useEffect(()=>{
         const f=async ()=>{
-        let res = await fetch('http://localhost:1337/api')
+        let res = await fetch('/api')
         if(!res.ok){
            return res
         }    else{
