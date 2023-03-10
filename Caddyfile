@@ -1,4 +1,4 @@
-www.kucharsky.site {
+www.kucharsky.site, kucharsky.site {
     reverse_proxy 185.104.248.103:1337 {
         header_down Strict-Transport-Security max-age=31536000;
         }
