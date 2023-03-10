@@ -1,9 +1,22 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
-const UserSchema = new mongoose.Schema({
-  username: String,
-  hash: String,
-  salt: String,
-});
+export interface UserDocumentI extends mongoose.Document {
+  username: string;
+  hash: string;
+  salt: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
 
-export const User = mongoose.model("User", UserSchema);
+const UserSchema = new mongoose.Schema(
+  {
+    username: { type: String, required: true, unique: true },
+    hash: { type: String, required: true },
+    salt: { type: String, required: true },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+export const UserModel = mongoose.model<UserDocumentI>("User", UserSchema);

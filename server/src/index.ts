@@ -1,20 +1,21 @@
 import express from "express";
 import winston from "winston";
 import mongoose from "mongoose";
-import MongoStore from "connect-mongo";
 import session from "express-session";
 import logger from "./utils/logger";
-import * as crypto from "crypto";
 import passport from "passport";
 import expressWinston from "express-winston";
 import path from "path";
 import { config } from "dotenv";
 import router from "./routes";
+import { UserModel } from "./user/user.model";
+import { strategy } from "./config/passport";
+import MongoStore from "connect-mongo";
 config();
 
 const app = express();
 
-mongoose.connect(process.env.MONGODB_URI || "").catch(() => {
+mongoose.connect(process.env.MONGODB_URI as string).catch(() => {
   logger.error("Could not connect to DB");
 });
 
@@ -23,14 +24,14 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
   session({
-    secret: process.env.SECRET_KEY || "",
+    secret: process.env.SECRET_KEY as string,
     resave: false,
     saveUninitialized: true,
     store: MongoStore.create({
-      mongoUrl: process.env.MONGODB_URI,
+      mongoUrl: process.env.MONGODB_URI as string,
     }),
     cookie: {
-      maxAge: 1000 * 60 * 60 * 24 * 14,
+      maxAge: 1000 * 60 * 60 * 24 * 2,
     },
   })
 );
@@ -48,9 +49,30 @@ app.use(
   })
 );
 
-app.use("/api", router);
-
 app.use(express.static(path.join(__dirname, "../../client/dist")));
+
+passport.use(strategy);
+
+type serializeUserType = {
+  _id?: number;
+};
+
+passport.serializeUser((user: serializeUserType, done) => {
+  done(null, user._id);
+});
+
+passport.deserializeUser((userId, done) => {
+  UserModel.findById(userId)
+    .then((user) => {
+      done(null, user);
+    })
+    .catch((err) => done(err));
+});
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use("/api", router);
 
 app.listen(1337, () => {
   logger.info(`App is running`);
