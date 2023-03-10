@@ -9,13 +9,13 @@ function App() {
         const f=async ()=>{
         let res = await fetch('http://localhost:1337/api')
         if(!res.ok){
-           throw Error('failed')
+           return res
         }    else{
             let data =await res.json()
             setValue(data.status)
         }
         }
-f().catch((e:any)=>setError(JSON.stringify(e)))
+f().catch((e:any)=>setError(JSON.stringify(e.message)))
     },[])
 
   return (
