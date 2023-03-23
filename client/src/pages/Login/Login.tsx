@@ -52,12 +52,8 @@ export default function Login() {
         try {
             const res = await mutation.mutateAsync(data);
 
-            if (res.statusText === "OK") {
-                dispatch(setUser({ user: res.data }));
-                navigate("/app/todos");
-            } else {
-                console.info(res);
-            }
+            dispatch(setUser({ user: res.data }));
+            navigate("/app/todos");
         } catch (e) {
             console.error(e);
         }
