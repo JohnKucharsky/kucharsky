@@ -1,0 +1,29 @@
+.container {
+    width: 25rem;
+    display: grid;
+    gap: 2rem;
+}
+
+.form_container {
+    display: grid;
+    gap: 1rem;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.divider {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid gray;
+    color: gray;
+    line-height: 0.1em;
+    margin: 1.5rem 0 10px;
+    span {
+        background: #fff;
+        padding: 0 10px;
+    }
+}

@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: "Ubuntu", sans-serif;
+}
+
+.center_login {
+  height: 100vh;
+  display: grid;
+  place-content: center;
+}
+
+.app_layout_container {
+  padding: 0.5rem;
+}
