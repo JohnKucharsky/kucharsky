@@ -15,6 +15,7 @@ export const getMe = async () => {
         withCredentials: true,
         headers: {
             Accept: " application/json",
+            "Content-Type": "application/json",
         },
     });
 
