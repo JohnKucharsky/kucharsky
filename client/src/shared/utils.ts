@@ -2,9 +2,9 @@ import { AxiosError } from "axios";
 import store from "../redux/store";
 import { setUser } from "../redux/profileSlice";
 
-export const resetOn403 = (err: AxiosError) => {
+export const resetOn403 = (err: AxiosError, callback: () => void) => {
     if (err?.request?.status === 403) {
-        window.location.reload();
+        callback();
         store.dispatch(setUser({ user: null }));
     }
     return null;

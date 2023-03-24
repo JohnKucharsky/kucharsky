@@ -1,7 +1,5 @@
 import axios, { AxiosResponse } from "axios";
 import { userI } from "./profile";
-import store from "../redux/store";
-import { setUser } from "../redux/profileSlice";
 
 export interface userRegisterI extends userLoginI {
     name: string;
@@ -29,15 +27,7 @@ export const loginUser = async (body: userLoginI) => {
 };
 
 export const logout = async () => {
-    const res = await axios.post<unknown, AxiosResponse<string>>(
-        "/api/logout",
-        {
-            withCredentials: true,
-        }
-    );
-    if (res.statusText === "OK") {
-        store.dispatch(setUser({ user: null }));
-        window.location.reload();
-    }
-    return res;
+    return await axios.post<unknown, AxiosResponse<string>>("/api/logout", {
+        withCredentials: true,
+    });
 };
