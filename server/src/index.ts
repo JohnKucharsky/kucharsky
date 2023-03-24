@@ -49,14 +49,6 @@ app.use(
     })
 );
 
-if (process.env.NODE === "prod") {
-    app.use(express.static(path.join(__dirname, "../../client/dist")));
-
-    app.get("*", (req, res) =>
-        res.sendFile(path.resolve(__dirname, "../../client/dist", "index.html"))
-    );
-}
-
 passport.use(strategy);
 
 passport.serializeUser((user, done) => {
@@ -79,3 +71,11 @@ app.use("/api", router);
 app.listen(1337, () => {
     logger.info(`App is running`);
 });
+
+if (process.env.NODE === "prod") {
+    app.use(express.static(path.join(__dirname, "../../client/dist")));
+
+    app.get("*", (req, res) =>
+        res.sendFile(path.resolve(__dirname, "../../client/dist", "index.html"))
+    );
+}
