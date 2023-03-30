@@ -2,6 +2,7 @@ import { getPassword } from "../utils/password";
 import { NextFunction, Request, Response } from "express";
 import { UserModel } from "./user.model";
 import { registerUserType } from "./user.schema";
+import mongoose from "mongoose";
 
 declare global {
     // eslint-disable-next-line @typescript-eslint/no-namespace
@@ -11,7 +12,7 @@ declare global {
             email: string;
             hash: string;
             salt: string;
-            _id: string;
+            _id: mongoose.Types.ObjectId;
             createdAt: Date;
             updatedAt: Date;
         }
