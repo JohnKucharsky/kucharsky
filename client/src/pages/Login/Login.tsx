@@ -19,7 +19,7 @@ import { useNavigate } from "react-router-dom";
 import { useMutation } from "react-query";
 import { AxiosResponse } from "axios";
 import { userI } from "../../api/profile";
-import { loginUser, userLoginI } from "../../api/loginRegister";
+import { loginUser } from "../../api/loginRegister";
 import { useAppDispatch } from "../../redux/store";
 import { setUser } from "../../redux/profileSlice";
 
@@ -27,35 +27,46 @@ const validationSchemaLogin = object({
     email: z.string().email("Incorrect email").max(40, "Max 40 characters"),
     password: z
         .string()
-        .min(6, "At least 3 characters")
+        .min(6, "At least 6 characters")
         .max(40, "Max 40 characters"),
 });
 
-type loginInputType = z.infer<typeof validationSchemaLogin>;
+export type loginInputType = z.infer<typeof validationSchemaLogin>;
 
 export default function Login() {
     const [show, setShow] = useState(false);
     const {
         register,
         handleSubmit,
+        setError,
         formState: { errors },
     } = useForm<loginInputType>({
         resolver: zodResolver(validationSchemaLogin),
     });
-    const mutation = useMutation<AxiosResponse<userI>, void, userLoginI>(
-        (body) => loginUser(body)
-    );
+    const loginMutation = useMutation<
+        AxiosResponse<userI>,
+        void,
+        loginInputType
+    >((body) => loginUser(body));
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
     const onSubmit = async (data: loginInputType) => {
         try {
-            const res = await mutation.mutateAsync(data);
+            const res = await loginMutation.mutateAsync(data);
 
             dispatch(setUser({ user: res.data }));
             navigate("/app/todos");
-        } catch (e) {
+        } catch (e: any) {
             console.error(e);
+            if (e?.response?.status === 401) {
+                ["password", "email"].map((v) => {
+                    return setError(v as "email" | "password", {
+                        type: "server",
+                        message: "Wrong credentials",
+                    });
+                });
+            }
         }
     };
 

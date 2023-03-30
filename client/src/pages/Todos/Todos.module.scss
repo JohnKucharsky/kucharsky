@@ -1,0 +1,48 @@
+@import "../../shared/styles/mixins/breakpoints";
+@import "../../shared/styles/mixins/mixins";
+
+.main_container {
+    display: grid;
+    place-content: center;
+    width: 100%;
+}
+
+.content {
+    display: grid;
+    gap: 1rem;
+    @include up416 {
+        width: 25rem;
+    }
+    @include up656 {
+        width: 40rem;
+    }
+    @include down416 {
+        gap: 1rem;
+    }
+
+    ::-webkit-scrollbar {
+        width: 0;
+    }
+}
+
+.title {
+    @include title;
+    margin: 1.5rem 0;
+}
+
+.todos_container {
+    display: grid;
+    grid-auto-rows: max-content;
+    gap: 0.5rem;
+    overflow: auto;
+    height: calc(100vh - 250px);
+}
+
+.todo_container {
+    padding: 0.5rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}

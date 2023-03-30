@@ -1,6 +1,7 @@
 import { getPassword } from "../utils/password";
 import { NextFunction, Request, Response } from "express";
 import { UserModel } from "./user.model";
+import { registerUserType } from "./user.schema";
 
 declare global {
     // eslint-disable-next-line @typescript-eslint/no-namespace
@@ -17,7 +18,10 @@ declare global {
     }
 }
 
-export async function registerUserHandler(req: Request, res: Response) {
+export async function registerUserHandler(
+    req: Request<unknown, unknown, registerUserType["body"], unknown>,
+    res: Response
+) {
     const saltHash = getPassword(req.body.password);
 
     try {
@@ -33,9 +37,8 @@ export async function registerUserHandler(req: Request, res: Response) {
             name: user.name,
             email: user.email,
         });
-    } catch (e: any) {
-        console.log(e);
-        return res.status(400).send(e.errors);
+    } catch (e) {
+        return res.status(400).send(e);
     }
 }
 
@@ -74,6 +77,6 @@ export function loginHandler(req: Request, res: Response, next: NextFunction) {
               })
             : next();
     } catch (e) {
-        res.send(403);
+        res.status(403).send(e);
     }
 }

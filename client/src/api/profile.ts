@@ -13,10 +13,6 @@ export interface userProfileI {
 export const getMe = async () => {
     const user = await axios.get<userProfileI>("/api/me", {
         withCredentials: true,
-        headers: {
-            Accept: " application/json",
-            "Content-Type": "application/json",
-        },
     });
 
     return user.data;

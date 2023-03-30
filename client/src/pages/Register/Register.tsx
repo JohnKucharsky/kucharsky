@@ -17,7 +17,7 @@ import { BsPerson } from "react-icons/bs";
 import { AiOutlineMail, AiOutlineLock } from "react-icons/ai";
 import s from "../../shared/styles/LoginRegister.module.scss";
 import { useNavigate } from "react-router-dom";
-import { registerUser, userRegisterI } from "../../api/loginRegister";
+import { registerUser } from "../../api/loginRegister";
 import { useMutation } from "react-query";
 import { userI } from "../../api/profile";
 import { omit } from "lodash";
@@ -31,18 +31,15 @@ const validationSchemaRegister = object({
     email: z.string().email("Incorrect email").max(40, "Max 40 characters"),
     password: z
         .string()
-        .min(6, "At least 3 characters")
+        .min(6, "At least 6  characters")
         .max(40, "Max 40 characters"),
-    passwordConfirmation: z
-        .string()
-        .min(6, "At least 3 characters")
-        .max(40, "Max 40 characters"),
+    passwordConfirmation: z.string(),
 }).refine((data) => data.password === data.passwordConfirmation, {
     message: "Passwords don't match",
     path: ["passwordConfirmation"],
 });
 
-type registerInputType = z.infer<typeof validationSchemaRegister>;
+export type registerInputType = z.infer<typeof validationSchemaRegister>;
 
 export default function Register() {
     const [show, setShow] = useState({
@@ -52,29 +49,32 @@ export default function Register() {
     const {
         register,
         handleSubmit,
+        setError,
         formState: { errors },
     } = useForm<registerInputType>({
         resolver: zodResolver(validationSchemaRegister),
     });
-    const mutation = useMutation<AxiosResponse<userI>, void, userRegisterI>(
-        (body) => registerUser(body)
-    );
+    const mutation = useMutation<
+        AxiosResponse<userI>,
+        void,
+        Omit<registerInputType, "passwordConfirmation">
+    >((body) => registerUser(body));
 
     const navigate = useNavigate();
 
     const onSubmit = async (data: registerInputType) => {
         try {
-            const res = await mutation.mutateAsync(
-                omit(data, "passwordConfirmation")
-            );
+            await mutation.mutateAsync(omit(data, "passwordConfirmation"));
 
-            if (res.statusText === "OK") {
-                navigate("/login");
-            } else {
-                console.info(res);
-            }
-        } catch (e) {
+            navigate("/login");
+        } catch (e: any) {
             console.error(e);
+            if (e?.response?.data?.code === 11000) {
+                setError("email", {
+                    type: "server",
+                    message: "Email has been taken",
+                });
+            }
         }
     };
 

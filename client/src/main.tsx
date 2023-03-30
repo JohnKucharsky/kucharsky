@@ -18,7 +18,7 @@ import { Provider } from "react-redux";
 import { getMe } from "./api/profile";
 import { setUser } from "./redux/profileSlice";
 
-const queryClient = new QueryClient();
+export const queryClient = new QueryClient();
 
 const checkUser = async () => {
     try {

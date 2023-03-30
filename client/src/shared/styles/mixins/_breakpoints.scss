@@ -1,0 +1,17 @@
+@mixin down416 {
+    @media (max-width: 415px) {
+        @content;
+    }
+}
+
+@mixin up416 {
+    @media (min-width: 416px) {
+        @content;
+    }
+}
+
+@mixin up656 {
+    @media (min-width: 656px) {
+        @content;
+    }
+}
