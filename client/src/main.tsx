@@ -17,8 +17,16 @@ import { Provider } from "react-redux";
 
 import { getMe } from "./api/profile";
 import { setUser } from "./redux/profileSlice";
+import Books from "./pages/Books/Books";
+import BookDetails from "./pages/Books/BookDetails";
 
-export const queryClient = new QueryClient();
+export const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            refetchOnWindowFocus: false, // default: true
+        },
+    },
+});
 
 const checkUser = async () => {
     try {
@@ -65,6 +73,19 @@ const router = createBrowserRouter([
                 path: "todos",
                 element: <Todos />,
             },
+            {
+                path: "books",
+                children: [
+                    {
+                        index: true,
+                        element: <Books />,
+                    },
+                    {
+                        path: ":book_id",
+                        element: <BookDetails />,
+                    },
+                ],
+            },
         ],
     },
     {
@@ -75,12 +96,12 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <React.StrictMode>
-        <Provider store={store}>
-            <ChakraProvider>
+        <ChakraProvider>
+            <Provider store={store}>
                 <QueryClientProvider client={queryClient}>
                     <RouterProvider router={router} />
                 </QueryClientProvider>
-            </ChakraProvider>
-        </Provider>
+            </Provider>
+        </ChakraProvider>
     </React.StrictMode>
 );

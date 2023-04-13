@@ -71,7 +71,7 @@ export default function Login() {
     };
 
     return (
-        <div className="center_login">
+        <div className={s.center_login}>
             <div className={s.container}>
                 <h4 className={s.title}>Welcome back!</h4>
                 <form

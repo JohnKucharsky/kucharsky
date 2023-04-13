@@ -1,6 +1,8 @@
+@import "../../shared/styles/mixins/breakpoints";
+
 .main {
     display: grid;
-    grid-template-columns: max-content 1fr repeat(2, max-content);
+    grid-template-columns: max-content 1fr repeat(3, max-content);
     align-items: center;
     border-bottom: 2px solid #dbeafe;
     gap: 1rem;
@@ -12,8 +14,44 @@
     font-weight: 500;
 }
 
-.icons {
-    display: flex;
+.links_container {
+    @include up416 {
+        display: flex;
+    }
+    display: none;
     align-items: center;
-    gap: 0.3rem;
+    gap: 1rem;
+    margin-left: 1rem;
+}
+
+.up416 {
+    @include up416 {
+        display: none;
+    }
+}
+
+.git {
+    transition: all linear 0.3s;
+    cursor: pointer;
+    &:hover {
+        color: #4b5563;
+    }
+}
+
+@mixin shared_link {
+    width: 3rem;
+    text-align: center;
+}
+
+.active_link {
+    color: #9ca3af;
+    cursor: unset;
+    @include shared_link;
+}
+
+.link {
+    @include shared_link;
+    &:hover {
+        font-weight: 600;
+    }
 }
