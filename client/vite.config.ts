@@ -8,7 +8,7 @@ export default defineConfig(({ command }) => {
             react(),
             EnvironmentPlugin(
                 {
-                    VITE_API_KEY: null,
+                    VITE_API_KEY: process.env.VITE_API_KEY || null,
                 },
                 {
                     loadEnvFiles: command !== "build",
