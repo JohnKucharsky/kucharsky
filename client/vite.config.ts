@@ -1,20 +1,21 @@
-import { defineConfig } from "vite";
+import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react-swc";
-import EnvironmentPlugin from "vite-plugin-environment";
 
-export default defineConfig(({ command }) => {
+export default defineConfig(() => {
+    const env = loadEnv("mock", process.cwd(), "");
+
+    const processEnvValues = {
+        "process.env": Object.entries(env).reduce((prev, [key, val]) => {
+            return {
+                ...prev,
+                [key]: val,
+            };
+        }, {}),
+    };
+
     return {
-        plugins: [
-            react(),
-            EnvironmentPlugin(
-                {
-                    VITE_API_KEY: process.env.VITE_API_KEY || null,
-                },
-                {
-                    loadEnvFiles: command !== "build",
-                }
-            ),
-        ],
+        plugins: [react()],
+        define: processEnvValues,
         server: {
             proxy: {
                 "/api": {
