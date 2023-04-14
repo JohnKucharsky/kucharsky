@@ -6,9 +6,14 @@ export default defineConfig(({ command }) => {
     return {
         plugins: [
             react(),
-            EnvironmentPlugin(["VITE_API_KEY"], {
-                loadEnvFiles: command !== "build",
-            }),
+            EnvironmentPlugin(
+                {
+                    VITE_API_KEY: null,
+                },
+                {
+                    loadEnvFiles: command !== "build",
+                }
+            ),
         ],
         server: {
             proxy: {
