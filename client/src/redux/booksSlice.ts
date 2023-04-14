@@ -25,8 +25,7 @@ const booksPayloadCreator = async (
             items: Book[];
             totalItems: number;
         }>(
-            "https://www.googleapis.com/books/v1/volumes" +
-                import.meta.env.VITE_API_KEY,
+            `https://www.googleapis.com/books/v1/volumes?key=${process.env.VITE_API_KEY}`,
             {
                 params: {
                     q:
