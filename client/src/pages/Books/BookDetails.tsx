@@ -46,24 +46,26 @@ export default function BookDetails() {
                 />
                 <div className={s.description_container}>
                     <Text fontSize="2xl">
-                        {getBookQuery.data?.volumeInfo.title}
+                        {getBookQuery.data?.volumeInfo?.title}
                     </Text>
                     <Text fontSize="xl">
                         {getBookQuery.data?.volumeInfo?.subtitle}
                     </Text>
                     <div className={s.author_links}>
-                        {getBookQuery.data?.volumeInfo.authors.map((author) => (
-                            <Link
-                                onClick={() => {
-                                    dispatch(setQuery(author));
-                                    navigate("/app/books");
-                                }}
-                                colorScheme="teal"
-                                key={author}
-                            >
-                                {author}
-                            </Link>
-                        ))}
+                        {getBookQuery.data?.volumeInfo?.authors?.map(
+                            (author) => (
+                                <Link
+                                    onClick={() => {
+                                        dispatch(setQuery(author));
+                                        navigate("/app/books");
+                                    }}
+                                    colorScheme="teal"
+                                    key={author}
+                                >
+                                    {author}
+                                </Link>
+                            )
+                        )}
                     </div>
                 </div>
             </div>

@@ -7,7 +7,7 @@ import {
     todoReqBodyI,
     updateTodo,
 } from "../../api/todos";
-import { resetOn403 } from "../../shared/utils";
+import { pagesNames, resetOn403 } from "../../shared/utils";
 import { useNavigate } from "react-router-dom";
 import { AxiosError, AxiosResponse } from "axios";
 import {
@@ -60,7 +60,8 @@ export default function Todos() {
     const todosQuery = useQuery({
         queryKey: "todos",
         queryFn: getTodos,
-        onError: (err: AxiosError) => resetOn403(err, () => navigate("/login")),
+        onError: (err: AxiosError) =>
+            resetOn403(err, () => navigate(`/${pagesNames.login}`)),
     });
 
     const addTodoMutation = useMutation<

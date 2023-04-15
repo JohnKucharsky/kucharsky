@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { BsPerson } from "react-icons/bs";
-import { AiOutlineMail, AiOutlineLock } from "react-icons/ai";
+import { AiOutlineLock, AiOutlineMail } from "react-icons/ai";
 import s from "../../shared/styles/LoginRegister.module.scss";
 import { useNavigate } from "react-router-dom";
 import { registerUser } from "../../api/loginRegister";
@@ -22,6 +22,7 @@ import { useMutation } from "react-query";
 import { userI } from "../../api/profile";
 import { omit } from "lodash";
 import { AxiosResponse } from "axios";
+import { pagesNames } from "../../shared/utils";
 
 const validationSchemaRegister = object({
     name: z
@@ -66,7 +67,7 @@ export default function Register() {
         try {
             await mutation.mutateAsync(omit(data, "passwordConfirmation"));
 
-            navigate("/login");
+            navigate(`/${pagesNames.login}`);
         } catch (e: any) {
             console.error(e);
             if (e?.response?.data?.code === 11000) {
@@ -232,7 +233,7 @@ export default function Register() {
                     <span>or</span>
                 </p>
                 <Button
-                    onClick={() => navigate("/login")}
+                    onClick={() => navigate(`/${pagesNames.login}`)}
                     variant="link"
                     colorScheme="blue"
                 >

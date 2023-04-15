@@ -19,6 +19,8 @@ import { getMe } from "./api/profile";
 import { setUser } from "./redux/profileSlice";
 import Books from "./pages/Books/Books";
 import BookDetails from "./pages/Books/BookDetails";
+import TicTacToe from "./pages/TicTacToe/TicTacToe";
+import { pagesNames } from "./shared/utils";
 
 export const queryClient = new QueryClient({
     defaultOptions: {
@@ -45,14 +47,14 @@ const router = createBrowserRouter([
     {
         path: "/",
         children: [
-            { index: true, loader: () => redirect("/login") },
+            { index: true, loader: () => redirect(`/${pagesNames.login}`) },
             {
-                path: "login",
+                path: pagesNames.login,
                 loader: checkUser,
                 element: <Login />,
             },
             {
-                path: "register",
+                path: pagesNames.register,
                 loader: checkUser,
                 element: <Register />,
             },
@@ -63,18 +65,18 @@ const router = createBrowserRouter([
         element: <AppLayout />,
         loader: () => {
             if (!store.getState().profile.user) {
-                return redirect("/login");
+                return redirect(`/${pagesNames.login}`);
             }
             return null;
         },
         children: [
             { index: true, loader: () => redirect("/app/todos") },
             {
-                path: "todos",
+                path: pagesNames.todos,
                 element: <Todos />,
             },
             {
-                path: "books",
+                path: pagesNames.books,
                 children: [
                     {
                         index: true,
@@ -85,6 +87,10 @@ const router = createBrowserRouter([
                         element: <BookDetails />,
                     },
                 ],
+            },
+            {
+                path: pagesNames.tic_tac_toe,
+                element: <TicTacToe />,
             },
         ],
     },

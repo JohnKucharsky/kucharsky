@@ -4,8 +4,13 @@
 .main {
     width: 100%;
     display: grid;
-    grid-template-rows: auto calc(100vh - 18.1rem);
     position: relative;
+    @include up416 {
+        grid-template-rows: auto calc(100vh - 24.5rem);
+    }
+    @include up656 {
+        grid-template-rows: auto calc(100vh - 18.1rem);
+    }
 }
 
 .inputs_container {
@@ -46,10 +51,13 @@
 .books_container {
     display: grid;
     gap: 1rem;
-    overflow: auto;
+
     grid-auto-rows: max-content;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     padding: 1rem;
+    @include up416 {
+        overflow: auto;
+    }
 }
 
 .book_card {

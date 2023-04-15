@@ -9,3 +9,11 @@ export const resetOn403 = (err: AxiosError, callback: () => void) => {
     }
     return null;
 };
+
+export enum pagesNames {
+    todos = "todos",
+    books = "books",
+    tic_tac_toe = "tic_tac_toe",
+    login = "login",
+    register = "register",
+}

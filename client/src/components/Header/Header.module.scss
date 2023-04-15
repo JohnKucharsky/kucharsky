@@ -39,18 +39,17 @@
 }
 
 @mixin shared_link {
-    width: 3rem;
     text-align: center;
 }
 
 .active_link {
-    color: #9ca3af;
     cursor: unset;
     @include shared_link;
 }
 
 .link {
     @include shared_link;
+    color: #9ca3af;
     &:hover {
         font-weight: 600;
     }
