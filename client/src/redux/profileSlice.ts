@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { userProfileI } from "../api/profile";
+import { userProfileI } from "../api/profile.api";
 
 let initialState: userProfileI = { user: null };
 

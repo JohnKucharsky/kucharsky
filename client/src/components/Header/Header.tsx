@@ -4,7 +4,7 @@ import { Button, Menu, MenuButton, MenuList } from "@chakra-ui/react";
 import s from "./Header.module.scss";
 import { useMutation } from "react-query";
 import { AxiosResponse } from "axios";
-import { logout } from "../../api/loginRegister";
+import { logout } from "../../api/loginRegister.api";
 import { Link, useNavigate } from "react-router-dom";
 import { setUser } from "../../redux/profileSlice";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -20,6 +20,16 @@ export default function Header() {
     const logoutMutation = useMutation<AxiosResponse<string>, void, unknown>(
         logout
     );
+
+    const onLogout = async () => {
+        try {
+            await logoutMutation.mutateAsync({});
+            navigate(`/${pagesNames.login}`);
+            dispatch(setUser({ user: null }));
+        } catch (e) {
+            console.error(e);
+        }
+    };
 
     return (
         <div className={s.main}>
@@ -44,15 +54,7 @@ export default function Header() {
 
             <h4 className={s.user_text}>{user?.name}</h4>
 
-            <Button
-                onClick={async () => {
-                    await logoutMutation.mutateAsync({});
-                    navigate(`/${pagesNames.login}`);
-                    dispatch(setUser({ user: null }));
-                }}
-                size="sm"
-                colorScheme="blue"
-            >
+            <Button onClick={onLogout} size="sm" colorScheme="blue">
                 Logout
             </Button>
         </div>

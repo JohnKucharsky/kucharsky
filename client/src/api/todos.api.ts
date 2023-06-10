@@ -1,9 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 
-export interface todoI {
+export interface todoI extends todoReqBodyI {
     _id: string;
-    todo: string;
-    finished: boolean;
     updatedAt: string;
 }
 

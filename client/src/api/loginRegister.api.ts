@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { userI } from "./profile";
+import { userI } from "./profile.api";
 import { loginInputType } from "../pages/Login/Login";
 import { registerInputType } from "../pages/Register/Register";
 

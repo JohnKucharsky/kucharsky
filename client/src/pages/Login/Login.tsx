@@ -18,8 +18,8 @@ import s from "../../shared/styles/LoginRegister.module.scss";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "react-query";
 import { AxiosResponse } from "axios";
-import { userI } from "../../api/profile";
-import { loginUser } from "../../api/loginRegister";
+import { userI } from "../../api/profile.api";
+import { loginUser } from "../../api/loginRegister.api";
 import { useAppDispatch } from "../../redux/store";
 import { setUser } from "../../redux/profileSlice";
 
@@ -39,6 +39,7 @@ export default function Login() {
         register,
         handleSubmit,
         setError,
+        setValue,
         formState: { errors },
     } = useForm<loginInputType>({
         resolver: zodResolver(validationSchemaLogin),
@@ -68,6 +69,11 @@ export default function Login() {
                 });
             }
         }
+    };
+
+    const fillFields = () => {
+        setValue("email", "user@mail.com");
+        setValue("password", "super_user");
     };
 
     return (
@@ -150,13 +156,27 @@ export default function Login() {
                 <p className={s.divider}>
                     <span>or</span>
                 </p>
-                <Button
-                    onClick={() => navigate("/register")}
-                    variant="link"
-                    colorScheme="blue"
-                >
-                    Register
-                </Button>
+                <div className={s.button_c}>
+                    <Button
+                        onClick={() => navigate("/register")}
+                        variant="link"
+                        colorScheme="blue"
+                    >
+                        Register
+                    </Button>
+                    <span
+                        style={{
+                            color: "#3182ce",
+                        }}
+                    >{` / `}</span>
+                    <Button
+                        variant="link"
+                        colorScheme="blue"
+                        onClick={fillFields}
+                    >
+                        Test access
+                    </Button>
+                </div>
             </div>
         </div>
     );

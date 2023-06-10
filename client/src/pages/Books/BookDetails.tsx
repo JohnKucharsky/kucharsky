@@ -3,15 +3,16 @@ import { setQuery } from "../../redux/booksSlice";
 import { useAppDispatch } from "../../redux/store";
 import { useQuery } from "react-query";
 import s from "./Books.module.scss";
-import { getBook } from "../../api/books";
+import { getBooks } from "../../api/books.api";
 import { Button, Image, Link, Text } from "@chakra-ui/react";
+import { Book } from "../../types/book";
 
 export default function BookDetails() {
     const { book_id } = useParams();
 
     const getBookQuery = useQuery({
-        queryKey: ["todos", book_id],
-        queryFn: (q) => getBook(q.queryKey[1] as string),
+        queryKey: ["books", book_id],
+        queryFn: (q) => getBooks<Book>(q.queryKey[1] as string),
     });
 
     const dispatch = useAppDispatch();

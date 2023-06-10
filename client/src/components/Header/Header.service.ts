@@ -12,8 +12,8 @@ export const headerLinks = [
         width: "3rem",
     },
     {
-        link: `/app/${pagesNames.tic_tac_toe}`,
-        title: "TicTacToe",
-        width: "5rem",
+        link: `/app/${pagesNames.notes_with_tags}`,
+        title: "NotesWithTags",
+        width: "7.5rem",
     },
 ];

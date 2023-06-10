@@ -15,12 +15,14 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import store from "./redux/store";
 import { Provider } from "react-redux";
 
-import { getMe } from "./api/profile";
+import { getMe } from "./api/profile.api";
 import { setUser } from "./redux/profileSlice";
 import Books from "./pages/Books/Books";
 import BookDetails from "./pages/Books/BookDetails";
-import TicTacToe from "./pages/TicTacToe/TicTacToe";
 import { pagesNames } from "./shared/utils";
+import NotesWithTags from "./pages/NotesWithTags/NotesWithTags";
+import NewAndEditNote from "./pages/NotesWithTags/components/NewAndEditNote";
+import ViewNote from "./pages/NotesWithTags/components/ViewNote";
 
 export const queryClient = new QueryClient({
     defaultOptions: {
@@ -89,8 +91,25 @@ const router = createBrowserRouter([
                 ],
             },
             {
-                path: pagesNames.tic_tac_toe,
-                element: <TicTacToe />,
+                path: pagesNames.notes_with_tags,
+                children: [
+                    {
+                        index: true,
+                        element: <NotesWithTags />,
+                    },
+                    {
+                        path: "new",
+                        element: <NewAndEditNote />,
+                    },
+                    {
+                        path: "view/:id",
+                        element: <ViewNote />,
+                    },
+                    {
+                        path: "edit/:id",
+                        element: <NewAndEditNote />,
+                    },
+                ],
             },
         ],
     },

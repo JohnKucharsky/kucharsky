@@ -1,0 +1,78 @@
+@import "../../shared/styles/mixins/mixins";
+@import "../../shared/styles/mixins/breakpoints";
+
+.main {
+    padding: 1rem;
+    max-width: 50rem;
+    margin: 2rem auto 0 auto;
+    display: grid;
+    gap: 1rem;
+}
+
+.top {
+    display: grid;
+    grid-template-columns: max-content 1fr repeat(2, max-content);
+    align-items: center;
+    gap: 1rem;
+    h4 {
+        font-size: 1.8rem;
+        font-weight: 600;
+    }
+}
+
+.bottom_line {
+    display: grid;
+    align-items: start;
+    grid-template-rows: repeat(2, max-content);
+    gap: 1rem;
+    h5 {
+        font-size: 1.5rem;
+        font-weight: 500;
+    }
+    @include up656 {
+        grid-template-rows: unset;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+}
+
+// Todos module
+
+.main_container {
+    display: grid;
+    place-content: center;
+    width: 100%;
+    padding: 1rem;
+}
+
+.content {
+    display: grid;
+    gap: 1rem;
+    width: 100%;
+
+    ::-webkit-scrollbar {
+        width: 0;
+    }
+}
+
+.title {
+    @include title;
+    margin: 0.5rem 0 1.5rem 0;
+}
+
+.tags_container {
+    display: grid;
+    grid-auto-rows: max-content;
+    gap: 0.5rem;
+    overflow: auto;
+    width: 100%;
+    height: calc(100vh - 450px);
+    padding: 0.1rem;
+}
+
+.card_tags_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.2rem;
+    justify-content: flex-end;
+}

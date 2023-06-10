@@ -20,6 +20,29 @@ import {
     deleteTodoSchema,
     updateTodoSchema,
 } from "./todo/todo.shema";
+import {
+    createNoteHandler,
+    deleteNoteHandler,
+    getNoteHandler,
+    getNotesHandler,
+    updateNoteHandler,
+} from "./notes/notes.controller";
+import {
+    createNotesSchema,
+    deleteNotesSchema,
+    updateNotesSchema,
+} from "./notes/notes.shema";
+import {
+    createTagHandler,
+    deleteTagHandler,
+    getTagsHandler,
+    updateTagHandler,
+} from "./tags/tags.controller";
+import {
+    createTagsSchema,
+    deleteTagsSchema,
+    updateTagsSchema,
+} from "./tags/tags.shema";
 
 const router = Router();
 
@@ -44,5 +67,36 @@ router.delete(
     deleteTodoHandler
 );
 /*Todos End*/
+
+/*Notes*/
+router.get("/notes", isAuth, getNotesHandler);
+router.get("/notes/:id", isAuth, getNoteHandler);
+router.post("/notes", [isAuth, validate(createNotesSchema)], createNoteHandler);
+router.post(
+    "/notes/:id",
+    [isAuth, validate(updateNotesSchema)],
+    updateNoteHandler
+);
+router.delete(
+    "/notes/:id",
+    [isAuth, validate(deleteNotesSchema)],
+    deleteNoteHandler
+);
+/*Notes End*/
+
+/*Tags*/
+router.get("/tags", isAuth, getTagsHandler);
+router.post("/tags", [isAuth, validate(createTagsSchema)], createTagHandler);
+router.post(
+    "/tags/:id",
+    [isAuth, validate(updateTagsSchema)],
+    updateTagHandler
+);
+router.delete(
+    "/tags/:id",
+    [isAuth, validate(deleteTagsSchema)],
+    deleteTagHandler
+);
+/*Tags End*/
 
 export default router;
