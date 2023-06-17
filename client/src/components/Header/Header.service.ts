@@ -16,4 +16,9 @@ export const headerLinks = [
         title: "NotesWithTags",
         width: "7.5rem",
     },
+    {
+        link: `/app/${pagesNames.memory_game}`,
+        title: "MemoryGame",
+        width: "7rem",
+    },
 ];

@@ -1,6 +1,6 @@
 import { useAppDispatch, useTypedSelector } from "../../redux/store";
 import { AiFillGithub } from "react-icons/ai";
-import { Button, Menu, MenuButton, MenuList } from "@chakra-ui/react";
+import { Button, Heading, Menu, MenuButton, MenuList } from "@chakra-ui/react";
 import s from "./Header.module.scss";
 import { useMutation } from "react-query";
 import { AxiosResponse } from "axios";
@@ -52,7 +52,7 @@ export default function Header() {
                 <AiFillGithub fontSize={24} className={s.git} />
             </Link>
 
-            <h4 className={s.user_text}>{user?.name}</h4>
+            <Heading size="sm">{user?.name}</Heading>
 
             <Button onClick={onLogout} size="sm" colorScheme="blue">
                 Logout

@@ -1,5 +1,6 @@
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
 import { tagI } from "./tags.api";
+import { axiosInstance } from "../shared/axios";
 
 export interface noteI extends Omit<noteReqBodyI, "tags"> {
     _id: string;
@@ -14,43 +15,31 @@ export interface noteReqBodyI {
 }
 
 export const getNotes = async () => {
-    const notes = await axios.get<noteI[]>("/api/notes", {
-        withCredentials: true,
-    });
+    const notes = await axiosInstance.get<noteI[]>("/api/notes");
 
     return notes.data;
 };
 
 export const getNote = async (id?: string) => {
-    const notes = await axios.get<noteI>(`/api/notes/${id}`, {
-        withCredentials: true,
-    });
+    const notes = await axiosInstance.get<noteI>(`/api/notes/${id}`);
 
     return notes.data;
 };
 
 export const createNote = async (body: noteReqBodyI) => {
-    return await axios.post<noteReqBodyI, AxiosResponse<noteI>>(
+    return await axiosInstance.post<noteReqBodyI, AxiosResponse<noteI>>(
         "/api/notes",
-        body,
-        {
-            withCredentials: true,
-        }
+        body
     );
 };
 
 export const updateNote = async (body: noteReqBodyI, id?: string) => {
-    return await axios.post<noteReqBodyI, AxiosResponse<noteI>>(
+    return await axiosInstance.post<noteReqBodyI, AxiosResponse<noteI>>(
         `/api/notes/${id}`,
-        body,
-        {
-            withCredentials: true,
-        }
+        body
     );
 };
 
 export const deleteNote = async (id?: string) => {
-    return await axios.delete(`/api/notes/${id}`, {
-        withCredentials: true,
-    });
+    return await axiosInstance.delete(`/api/notes/${id}`);
 };

@@ -1,12 +1,12 @@
-import s from "../NotesWithTags.module.scss";
-import { Button, Tag } from "@chakra-ui/react";
+import s from "./NotesWithTags.module.scss";
+import { Button, Heading, Tag } from "@chakra-ui/react";
 import { useNavigate, useParams } from "react-router-dom";
-import { handleError, pagesNames } from "../../../shared/utils";
+import { handleError, pagesNames } from "../../shared/utils";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { AxiosError, AxiosResponse } from "axios";
-import { deleteNote, getNote, noteI } from "../../../api/notes.api";
+import { deleteNote, getNote, noteI } from "../../api/notes.api";
 import ReactMarkdown from "react-markdown";
-import { tagI } from "../../../api/tags.api";
+import { tagI } from "../../api/tags.api";
 
 export default function ViewNote() {
     const navigate = useNavigate();
@@ -20,6 +20,7 @@ export default function ViewNote() {
         onError: (err: AxiosError) => {
             handleError(err, () => navigate(`/${pagesNames.login}`));
         },
+        suspense: true,
     });
 
     const deleteNoteMutation = useMutation<
@@ -54,7 +55,8 @@ export default function ViewNote() {
                 }}
                 className={s.top}
             >
-                <h4>View Note</h4>
+                <Heading fontSize="3xl">View Note</Heading>
+
                 <div />
 
                 <Button
@@ -88,8 +90,10 @@ export default function ViewNote() {
                     Back
                 </Button>
             </div>
+
             <div className={s.bottom_line}>
-                <h5>{noteQuery.data?.title}</h5>
+                <Heading fontSize="xl">{noteQuery.data?.title}</Heading>
+
                 <div className={s.card_tags_wrapper}>
                     {noteQuery.data?.tags.map((tag) => (
                         <Tag
@@ -103,6 +107,7 @@ export default function ViewNote() {
                     ))}
                 </div>
             </div>
+
             <ReactMarkdown>{noteQuery.data?.markdown || ""}</ReactMarkdown>
         </div>
     );

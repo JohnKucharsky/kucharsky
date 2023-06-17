@@ -1,27 +1,28 @@
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
 import { userI } from "./profile.api";
-import { loginInputType } from "../pages/Login/Login";
+
 import { registerInputType } from "../pages/Register/Register";
+import { loginInputType } from "../pages/Login/Login.service";
+import { axiosInstance } from "../shared/axios";
 
 export const registerUser = async (
     body: Omit<registerInputType, "passwordConfirmation">
 ) => {
-    return await axios.post<
+    return await axiosInstance.post<
         Omit<registerInputType, "passwordConfirmation">,
         AxiosResponse<userI>
-    >("/api/register", { ...body }, { withCredentials: true });
+    >("/api/register", { ...body });
 };
 
 export const loginUser = async (body: loginInputType) => {
-    return await axios.post<loginInputType, AxiosResponse<userI>>(
+    return await axiosInstance.post<loginInputType, AxiosResponse<userI>>(
         "/api/login",
-        { ...body },
-        { withCredentials: true }
+        { ...body }
     );
 };
 
 export const logout = async () => {
-    return await axios.post<unknown, AxiosResponse<string>>("/api/logout", {
-        withCredentials: true,
-    });
+    return await axiosInstance.post<unknown, AxiosResponse<string>>(
+        "/api/logout"
+    );
 };

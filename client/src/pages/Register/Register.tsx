@@ -7,6 +7,7 @@ import {
     FormControl,
     FormHelperText,
     FormLabel,
+    Heading,
     Input,
     InputGroup,
     InputLeftElement,
@@ -82,7 +83,10 @@ export default function Register() {
     return (
         <div className={s.center_login}>
             <div className={s.container}>
-                <h4 className={s.title}>Join Us!</h4>
+                <Heading fontWeight={600} textAlign="center">
+                    Join Us!
+                </Heading>
+
                 <form
                     className={s.form_container}
                     onSubmit={handleSubmit(onSubmit)}
@@ -229,9 +233,11 @@ export default function Register() {
                         Register
                     </Button>
                 </form>
+
                 <p className={s.divider}>
                     <span>or</span>
                 </p>
+
                 <Button
                     onClick={() => navigate(`/${pagesNames.login}`)}
                     variant="link"

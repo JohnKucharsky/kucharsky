@@ -76,16 +76,6 @@
     place-content: center;
 }
 
-.card_text {
-    @include text_ellipsis;
-}
-
-.card_text_gray {
-    @include text_ellipsis;
-    color: gray;
-    font-size: 0.8rem;
-}
-
 .card_text_gray_underline {
     color: gray;
     font-size: 0.9rem;

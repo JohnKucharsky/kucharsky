@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import "../index.scss";
 import {
@@ -6,23 +6,16 @@ import {
     redirect,
     RouterProvider,
 } from "react-router-dom";
-import Login from "./pages/Login/Login";
 import { ChakraProvider } from "@chakra-ui/react";
-import Register from "./pages/Register/Register";
 import AppLayout from "./layouts/AppLayout";
-import Todos from "./pages/Todos/Todos";
 import { QueryClient, QueryClientProvider } from "react-query";
 import store from "./redux/store";
 import { Provider } from "react-redux";
-
-import { getMe } from "./api/profile.api";
-import { setUser } from "./redux/profileSlice";
+import { checkUser, pagesNames } from "./shared/utils";
+import { ErrorBoundary } from "react-error-boundary";
+import FallbackError from "./shared/helpers/FallbackError";
+import DefaultSkeleton from "./skeletons/DefaultSkeleton";
 import Books from "./pages/Books/Books";
-import BookDetails from "./pages/Books/BookDetails";
-import { pagesNames } from "./shared/utils";
-import NotesWithTags from "./pages/NotesWithTags/NotesWithTags";
-import NewAndEditNote from "./pages/NotesWithTags/components/NewAndEditNote";
-import ViewNote from "./pages/NotesWithTags/components/ViewNote";
 
 export const queryClient = new QueryClient({
     defaultOptions: {
@@ -32,18 +25,16 @@ export const queryClient = new QueryClient({
     },
 });
 
-const checkUser = async () => {
-    try {
-        const user = await getMe();
-        store.dispatch(setUser(user));
-        if (user.user) {
-            return redirect("/app/todos");
-        }
-    } catch (e) {
-        console.error(e);
-    }
-    return null;
-};
+const Login = lazy(() => import("./pages/Login/Login"));
+const Register = lazy(() => import("./pages/Register/Register"));
+const Todos = lazy(() => import("./pages/Todos/Todos"));
+const BookDetails = lazy(() => import("./pages/Books/BookDetails"));
+const NotesWithTags = lazy(() => import("./pages/NotesWithTags/NotesWithTags"));
+const NewAndEditNote = lazy(
+    () => import("./pages/NotesWithTags/NewAndEditNote")
+);
+const ViewNote = lazy(() => import("./pages/NotesWithTags/ViewNote"));
+const MemoryGame = lazy(() => import("./pages/MemoryGame/MemoryGame"));
 
 const router = createBrowserRouter([
     {
@@ -53,12 +44,24 @@ const router = createBrowserRouter([
             {
                 path: pagesNames.login,
                 loader: checkUser,
-                element: <Login />,
+                element: (
+                    <ErrorBoundary FallbackComponent={FallbackError}>
+                        <Suspense fallback={<DefaultSkeleton />}>
+                            <Login />
+                        </Suspense>
+                    </ErrorBoundary>
+                ),
             },
             {
                 path: pagesNames.register,
                 loader: checkUser,
-                element: <Register />,
+                element: (
+                    <ErrorBoundary FallbackComponent={FallbackError}>
+                        <Suspense fallback={<DefaultSkeleton />}>
+                            <Register />
+                        </Suspense>
+                    </ErrorBoundary>
+                ),
             },
         ],
     },
@@ -75,7 +78,13 @@ const router = createBrowserRouter([
             { index: true, loader: () => redirect("/app/todos") },
             {
                 path: pagesNames.todos,
-                element: <Todos />,
+                element: (
+                    <ErrorBoundary FallbackComponent={FallbackError}>
+                        <Suspense fallback={<DefaultSkeleton />}>
+                            <Todos />
+                        </Suspense>
+                    </ErrorBoundary>
+                ),
             },
             {
                 path: pagesNames.books,
@@ -86,7 +95,13 @@ const router = createBrowserRouter([
                     },
                     {
                         path: ":book_id",
-                        element: <BookDetails />,
+                        element: (
+                            <ErrorBoundary FallbackComponent={FallbackError}>
+                                <Suspense fallback={<DefaultSkeleton />}>
+                                    <BookDetails />
+                                </Suspense>
+                            </ErrorBoundary>
+                        ),
                     },
                 ],
             },
@@ -95,21 +110,55 @@ const router = createBrowserRouter([
                 children: [
                     {
                         index: true,
-                        element: <NotesWithTags />,
+                        element: (
+                            <ErrorBoundary FallbackComponent={FallbackError}>
+                                <Suspense fallback={<DefaultSkeleton />}>
+                                    <NotesWithTags />
+                                </Suspense>
+                            </ErrorBoundary>
+                        ),
                     },
                     {
                         path: "new",
-                        element: <NewAndEditNote />,
+                        element: (
+                            <ErrorBoundary FallbackComponent={FallbackError}>
+                                <Suspense fallback={<DefaultSkeleton />}>
+                                    <NewAndEditNote />
+                                </Suspense>
+                            </ErrorBoundary>
+                        ),
                     },
                     {
                         path: "view/:id",
-                        element: <ViewNote />,
+                        element: (
+                            <ErrorBoundary FallbackComponent={FallbackError}>
+                                <Suspense fallback={<DefaultSkeleton />}>
+                                    <ViewNote />
+                                </Suspense>
+                            </ErrorBoundary>
+                        ),
                     },
                     {
                         path: "edit/:id",
-                        element: <NewAndEditNote />,
+                        element: (
+                            <ErrorBoundary FallbackComponent={FallbackError}>
+                                <Suspense fallback={<DefaultSkeleton />}>
+                                    <NewAndEditNote />
+                                </Suspense>
+                            </ErrorBoundary>
+                        ),
                     },
                 ],
+            },
+            {
+                path: pagesNames.memory_game,
+                element: (
+                    <ErrorBoundary FallbackComponent={FallbackError}>
+                        <Suspense fallback={<DefaultSkeleton />}>
+                            <MemoryGame />
+                        </Suspense>
+                    </ErrorBoundary>
+                ),
             },
         ],
     },

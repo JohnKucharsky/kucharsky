@@ -1,27 +1,28 @@
-import s from "../NotesWithTags.module.scss";
+import s from "./NotesWithTags.module.scss";
 import {
     Button,
     FormControl,
     FormLabel,
+    Heading,
     Input,
     InputGroup,
     Textarea,
 } from "@chakra-ui/react";
 import ReactSelect from "react-select";
 import { useNavigate, useParams } from "react-router-dom";
-import { handleError, pagesNames } from "../../../shared/utils";
+import { handleError, pagesNames } from "../../shared/utils";
 import { SyntheticEvent, useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import { getTags } from "../../../api/tags.api";
+import { getTags } from "../../api/tags.api";
 import { AxiosError, AxiosResponse } from "axios";
-import { colourStyles } from "../NotesWithTags.service";
+import { colourStyles } from "./NotesWithTags.service";
 import {
     createNote,
     getNote,
     noteI,
     noteReqBodyI,
     updateNote,
-} from "../../../api/notes.api";
+} from "../../api/notes.api";
 import _ from "lodash";
 
 export default function NewAndEditNote() {
@@ -34,6 +35,7 @@ export default function NewAndEditNote() {
             handleError(err, () => navigate(`/${pagesNames.login}`));
         },
         enabled: !!id,
+        suspense: true,
     });
 
     const [title, setTitle] = useState("");
@@ -133,7 +135,9 @@ export default function NewAndEditNote() {
                 setMarkdown("");
                 setTitle("");
                 setSelectedTags([]);
-                navigate(`/app/${pagesNames.notes_with_tags}`);
+                id
+                    ? navigate(`/app/${pagesNames.notes_with_tags}/view/${id}`)
+                    : navigate(`/app/${pagesNames.notes_with_tags}`);
             })
             .catch((e) => console.error(e));
     };
@@ -141,11 +145,16 @@ export default function NewAndEditNote() {
     return (
         <div className={s.main}>
             <div className={s.top}>
-                <h4>{id ? "Edit Note" : "Create Note"}</h4>
+                <Heading fontSize="3xl">
+                    {id ? "Edit Note" : "Create Note"}
+                </Heading>
+
                 <div />
+
                 <Button size="sm" onClick={onSubmit} colorScheme="blue">
                     Save
                 </Button>
+
                 <Button
                     onClick={() =>
                         navigate(`/app/${pagesNames.notes_with_tags}`)
@@ -157,6 +166,7 @@ export default function NewAndEditNote() {
                     Back
                 </Button>
             </div>
+
             <div className={s.bottom_line}>
                 <form onSubmit={onSubmit}>
                     <FormControl>
@@ -201,6 +211,7 @@ export default function NewAndEditNote() {
                     />
                 </FormControl>
             </div>
+
             <Textarea
                 placeholder="Markdown text"
                 size="lg"

@@ -4,37 +4,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2baa5e39-82fe-4c89-9976-c7ea4df79e7c" name="Changes" comment="tic tac toe">
-      <change afterPath="$PROJECT_DIR$/client/src/api/notes.api.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/api/tags.api.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/assets/pagination.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/NotesWithTags/NotesWithTags.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/NotesWithTags/NotesWithTags.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/NotesWithTags/NotesWithTags.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/NotesWithTags/components/EditTagsEl.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/NotesWithTags/components/NewAndEditNote.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/NotesWithTags/components/Tag.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/NotesWithTags/components/ViewNote.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/notes/notes.controller.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/notes/notes.model.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/notes/notes.shema.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/tags/tags.controller.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/tags/tags.model.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/tags/tags.shema.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/prettier.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/prettier.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/todo_app_server.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.prettierrc" beforeDir="false" afterPath="$PROJECT_DIR$/client/.prettierrc.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/api/books.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/api/books.api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/api/loginRegister.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/api/loginRegister.api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/api/profile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/api/profile.api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/api/todos.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/api/todos.api.ts" afterDir="false" />
+    <list default="true" id="2baa5e39-82fe-4c89-9976-c7ea4df79e7c" name="Changes" comment="notes with tags">
+      <change afterPath="$PROJECT_DIR$/client/public/images/cover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/public/images/helmet-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/public/images/potion-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/public/images/ring-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/public/images/scroll-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/public/images/shield-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/public/images/sword-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/Books/Books.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/Books/components/BooksListCards.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/Login/Login.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/MemoryGame/MemoryGame.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/MemoryGame/MemoryGame.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/MemoryGame/MemoryGame.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/MemoryGame/components/Card.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/Todos/components/CheckboxEl.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/shared/axios.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/shared/helpers/FallbackError.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/skeletons/BooksSkeleton.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/skeletons/DefaultSkeleton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/api/loginRegister.api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/api/loginRegister.api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/api/notes.api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/api/notes.api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/api/profile.api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/api/profile.api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/api/tags.api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/api/tags.api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/api/todos.api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/api/todos.api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Header/Header.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Header/Header.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/Header/Header.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Header/Header.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/Header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Header/Header.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main.tsx" afterDir="false" />
@@ -42,18 +38,19 @@
       <change beforePath="$PROJECT_DIR$/client/src/pages/Books/Books.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/Books/Books.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/pages/Books/Books.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/Books/Books.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/pages/Login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/Login/Login.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/NotesWithTags/NotesWithTags.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/NotesWithTags/NotesWithTags.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/NotesWithTags/NotesWithTags.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/NotesWithTags/NotesWithTags.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/NotesWithTags/components/EditTagsEl.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/NotesWithTags/components/EditTagsEl.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/NotesWithTags/components/NewAndEditNote.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/NotesWithTags/NewAndEditNote.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/NotesWithTags/components/Tag.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/NotesWithTags/components/Tag.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/NotesWithTags/components/ViewNote.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/NotesWithTags/ViewNote.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/pages/Register/Register.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/Register/Register.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/TicTacToe/TicTacToe.module.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/TicTacToe/TicTacToe.service.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/TicTacToe/TicTacToe.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/TicTacToe/components/Board.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/Todos/Todos.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/Todos/Todos.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/pages/Todos/Todos.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/Todos/Todos.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/redux/booksSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/booksSlice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/redux/profileSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/profileSlice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/shared/styles/LoginRegister.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/shared/styles/LoginRegister.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/shared/styles/mixins/_mixins.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/shared/styles/mixins/_mixins.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/shared/utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/shared/utils.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/vite.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,29 +74,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "NewWatcherDialog.advanced.open": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/vanno/Desktop/todo_app_server/client",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.standard": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\vanno\\Desktop\\todo_app_server\\server\\node_modules\\prettier",
-    "settings.editor.selected.configurable": "actions.on.save",
-    "ts.external.directory.path": "C:\\Users\\vanno\\Desktop\\todo_app_server\\client\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;NewWatcherDialog.advanced.open&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/vanno/Desktop/todo_app_server/client&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Users\\vanno\\Desktop\\todo_app_server\\server\\node_modules\\prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\vanno\\Desktop\\todo_app_server\\client\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\vanno\Desktop\todo_app_server\client" />
@@ -108,8 +105,8 @@
       <recent name="C:\Users\vanno\Desktop\todo_app_server\server\dist" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\vanno\Desktop\todo_app_server\client\src\pages\NotesWithTags\components" />
       <recent name="C:\Users\vanno\Desktop\todo_app_server\client\src\pages\NotesWithTags" />
+      <recent name="C:\Users\vanno\Desktop\todo_app_server\client\src\pages\NotesWithTags\components" />
       <recent name="C:\Users\vanno\Desktop\todo_app_server\client" />
       <recent name="C:\Users\vanno\Desktop\todo_app_server\client\src\assets" />
       <recent name="C:\Users\vanno\Desktop\todo_app_server\client\src\components\Header" />
@@ -170,14 +167,14 @@
       <workItem from="1685430658574" duration="20000" />
       <workItem from="1686335929452" duration="3350000" />
       <workItem from="1686380999153" duration="8000" />
-      <workItem from="1686396482112" duration="15655000" />
-    </task>
-    <task id="LOCAL-00001" summary="second commit">
-      <created>1678389256376</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1678389256376</updated>
+      <workItem from="1686396482112" duration="16641000" />
+      <workItem from="1686490110798" duration="319000" />
+      <workItem from="1686492122241" duration="3213000" />
+      <workItem from="1686583676927" duration="6707000" />
+      <workItem from="1686727542797" duration="590000" />
+      <workItem from="1686752389126" duration="592000" />
+      <workItem from="1686813078021" duration="383000" />
+      <workItem from="1687010579262" duration="8662000" />
     </task>
     <task id="LOCAL-00002" summary="second commit">
       <created>1678390103324</created>
@@ -515,7 +512,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681585294187</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="notes with tags">
+      <created>1686422688787</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1686422688787</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -553,6 +557,7 @@
     <MESSAGE value="todos" />
     <MESSAGE value="books part" />
     <MESSAGE value="tic tac toe" />
-    <option name="LAST_COMMIT_MESSAGE" value="tic tac toe" />
+    <MESSAGE value="notes with tags" />
+    <option name="LAST_COMMIT_MESSAGE" value="notes with tags" />
   </component>
 </project>

@@ -13,6 +13,7 @@ export default function BookDetails() {
     const getBookQuery = useQuery({
         queryKey: ["books", book_id],
         queryFn: (q) => getBooks<Book>(q.queryKey[1] as string),
+        suspense: true,
     });
 
     const dispatch = useAppDispatch();
@@ -49,9 +50,11 @@ export default function BookDetails() {
                     <Text fontSize="2xl">
                         {getBookQuery.data?.volumeInfo?.title}
                     </Text>
+
                     <Text fontSize="xl">
                         {getBookQuery.data?.volumeInfo?.subtitle}
                     </Text>
+
                     <div className={s.author_links}>
                         {getBookQuery.data?.volumeInfo?.authors?.map(
                             (author) => (

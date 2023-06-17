@@ -1,8 +1,7 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import {
     FormControl,
     FormLabel,
-    Image,
     Input,
     InputGroup,
     Progress,
@@ -11,25 +10,18 @@ import {
 
 import s from "./Books.module.scss";
 import "../../assets/pagination.less";
-
-import { useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
 import { categoriesType, getBooks, relevanceType } from "../../api/books.api";
 import { Book } from "../../types/book";
 import { useAppDispatch, useTypedSelector } from "../../redux/store";
 import { setQuery } from "../../redux/booksSlice";
 import Pagination from "rc-pagination";
-
-const categories = [
-    "all",
-    "art",
-    "biography",
-    "computers",
-    "history",
-    "medical",
-    "poetry",
-];
-const orderBy = ["newest", "relevance"];
+import BooksListCards from "./components/BooksListCards";
+import {
+    categories,
+    orderBy,
+    paginationContainerStyles,
+} from "./Books.service";
 
 export default function BooksList() {
     const [category, setCategory] = useState<categoriesType>("all");
@@ -48,8 +40,6 @@ export default function BooksList() {
                 totalItems: number;
             }>(query, category, relevance, page),
     });
-
-    const navigate = useNavigate();
 
     return (
         <div className={s.main}>
@@ -117,66 +107,9 @@ export default function BooksList() {
                 </div>
             </div>
 
-            {/* Cards */}
-            <div className={s.books_container}>
-                {books.data?.items?.length ? (
-                    Array.from(
-                        new Map(
-                            books.data?.items?.map((item) => [item["id"], item])
-                        ).values()
-                    )?.map((v) => (
-                        <div
-                            onClick={() => {
-                                navigate(`/app/books/${v.id}`);
-                            }}
-                            className={s.book_card}
-                            key={v.id}
-                        >
-                            <div className={s.image_con}>
-                                <Image
-                                    style={{
-                                        boxShadow: `0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)`,
-                                    }}
-                                    src={
-                                        v.volumeInfo?.imageLinks?.thumbnail ||
-                                        ""
-                                    }
-                                    alt={v.volumeInfo?.title}
-                                    maxH={"10rem"}
-                                />
-                            </div>
-                            <div></div>
-                            <p className={s.card_text_gray_underline}>
-                                {v.volumeInfo.categories?.[0] ||
-                                    "Unknown Category"}
-                            </p>
+            <BooksListCards books={books.data} />
 
-                            <div className={s.card_text}>
-                                <p>{v.volumeInfo.title} </p>
-                            </div>
-
-                            <div className={s.card_text_gray}>
-                                <p>
-                                    {v.volumeInfo.authors || "Unknown Author"}
-                                </p>
-                            </div>
-                        </div>
-                    ))
-                ) : (
-                    <div>No results</div>
-                )}
-            </div>
-
-            <div
-                style={{
-                    position: "absolute",
-                    margin: "0.3rem auto 0 auto",
-                    bottom: 0,
-                    left: "50%",
-                    transform: "translate(-50%,0)",
-                }}
-                onClick={() => null}
-            >
+            <div style={paginationContainerStyles} onClick={() => null}>
                 <div className={s.pagination_container}>
                     <Pagination
                         onChange={(page) => setPage(page)}

@@ -42,6 +42,7 @@ export default function NotesWithTags() {
         onError: (err: AxiosError) => {
             handleError(err, () => navigate(`/${pagesNames.login}`));
         },
+        suspense: true,
     });
 
     const notesQuery = useQuery({
@@ -60,9 +61,12 @@ export default function NotesWithTags() {
                     <EditTagsEl tags={tagsQuery.data} />
                 </ModalContent>
             </Modal>
+
             <div className={s.top}>
-                <h4>Notes</h4>
+                <Heading fontSize="3xl">Notes</Heading>
+
                 <div />
+
                 <Button
                     size="sm"
                     onClick={() =>
@@ -72,6 +76,7 @@ export default function NotesWithTags() {
                 >
                     Create
                 </Button>
+
                 <Button
                     onClick={onOpen}
                     size="sm"
@@ -81,6 +86,7 @@ export default function NotesWithTags() {
                     Edit Tags
                 </Button>
             </div>
+
             <div className={s.bottom_line}>
                 <form>
                     <FormControl>
@@ -96,6 +102,7 @@ export default function NotesWithTags() {
                         </InputGroup>
                     </FormControl>
                 </form>
+
                 <FormControl>
                     <FormLabel ml={1}>Order By</FormLabel>
                     <ReactSelect

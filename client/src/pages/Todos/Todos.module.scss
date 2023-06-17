@@ -1,7 +1,7 @@
 @import "../../shared/styles/mixins/breakpoints";
 @import "../../shared/styles/mixins/mixins";
 
-.main_container {
+.main {
     display: grid;
     place-content: center;
     width: 100%;
@@ -23,11 +23,6 @@
     ::-webkit-scrollbar {
         width: 0;
     }
-}
-
-.title {
-    @include title;
-    margin: 1.5rem 0;
 }
 
 .todos_container {

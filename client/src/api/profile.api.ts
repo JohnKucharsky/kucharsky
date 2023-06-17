@@ -1,4 +1,4 @@
-import axios from "axios";
+import { axiosInstance } from "../shared/axios";
 
 export interface userI {
     id: string;
@@ -11,9 +11,7 @@ export interface userProfileI {
 }
 
 export const getMe = async () => {
-    const user = await axios.get<userProfileI>("/api/me", {
-        withCredentials: true,
-    });
+    const user = await axiosInstance.get<userProfileI>("/api/me");
 
     return user.data;
 };

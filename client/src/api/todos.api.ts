@@ -1,4 +1,5 @@
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
+import { axiosInstance } from "../shared/axios";
 
 export interface todoI extends todoReqBodyI {
     _id: string;
@@ -11,35 +12,25 @@ export interface todoReqBodyI {
 }
 
 export const getTodos = async () => {
-    const todos = await axios.get<todoI[]>("/api/todos", {
-        withCredentials: true,
-    });
+    const todos = await axiosInstance.get<todoI[]>("/api/todos");
 
     return todos.data;
 };
 
 export const createTodo = async (body: todoReqBodyI) => {
-    return await axios.post<todoReqBodyI, AxiosResponse<todoI>>(
+    return await axiosInstance.post<todoReqBodyI, AxiosResponse<todoI>>(
         "/api/todos",
-        body,
-        {
-            withCredentials: true,
-        }
+        body
     );
 };
 
 export const updateTodo = async (body: todoReqBodyI, id: string) => {
-    return await axios.post<todoReqBodyI, AxiosResponse<todoI>>(
+    return await axiosInstance.post<todoReqBodyI, AxiosResponse<todoI>>(
         `/api/todos/${id}`,
-        body,
-        {
-            withCredentials: true,
-        }
+        body
     );
 };
 
 export const deleteTodo = async (id: string) => {
-    return await axios.delete(`/api/todos/${id}`, {
-        withCredentials: true,
-    });
+    return await axiosInstance.delete(`/api/todos/${id}`);
 };

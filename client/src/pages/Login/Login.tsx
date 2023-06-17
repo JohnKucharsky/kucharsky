@@ -3,6 +3,7 @@ import {
     FormControl,
     FormHelperText,
     FormLabel,
+    Heading,
     Input,
     InputGroup,
     InputLeftElement,
@@ -13,7 +14,6 @@ import { AiOutlineLock, AiOutlineMail } from "react-icons/ai";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { object, z } from "zod";
 import s from "../../shared/styles/LoginRegister.module.scss";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "react-query";
@@ -22,16 +22,7 @@ import { userI } from "../../api/profile.api";
 import { loginUser } from "../../api/loginRegister.api";
 import { useAppDispatch } from "../../redux/store";
 import { setUser } from "../../redux/profileSlice";
-
-const validationSchemaLogin = object({
-    email: z.string().email("Incorrect email").max(40, "Max 40 characters"),
-    password: z
-        .string()
-        .min(6, "At least 6 characters")
-        .max(40, "Max 40 characters"),
-});
-
-export type loginInputType = z.infer<typeof validationSchemaLogin>;
+import { loginInputType, validationSchemaLogin } from "./Login.service";
 
 export default function Login() {
     const [show, setShow] = useState(false);
@@ -79,7 +70,9 @@ export default function Login() {
     return (
         <div className={s.center_login}>
             <div className={s.container}>
-                <h4 className={s.title}>Welcome back!</h4>
+                <Heading fontWeight={600} textAlign="center">
+                    Welcome back!
+                </Heading>
                 <form
                     className={s.form_container}
                     onSubmit={handleSubmit(onSubmit)}
@@ -153,9 +146,11 @@ export default function Login() {
                         Login
                     </Button>
                 </form>
+
                 <p className={s.divider}>
                     <span>or</span>
                 </p>
+
                 <div className={s.button_c}>
                     <Button
                         onClick={() => navigate("/register")}

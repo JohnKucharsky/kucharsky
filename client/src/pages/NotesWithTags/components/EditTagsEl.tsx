@@ -11,8 +11,10 @@ import {
 } from "../../../api/tags.api";
 import s from "../NotesWithTags.module.scss";
 import {
+    Box,
     Button,
     FormControl,
+    Heading,
     Input,
     InputGroup,
     InputLeftElement,
@@ -68,33 +70,14 @@ export default function EditTagsEl({ tags }: { tags: tagI[] | undefined }) {
         },
     });
 
-    const submitAddTag = async (body: tagReqBodyI) => {
+    const submitAddTag = (body: tagReqBodyI) => {
         setTagValue("");
-        try {
-            await addTagMutation.mutateAsync(body);
-        } catch (e) {
-            console.error(e);
-        }
+        addTagMutation.mutate(body);
     };
 
-    const submitUpdateTag = async (body: { body: tagReqBodyI; id: string }) => {
-        try {
-            await updateTagMutation.mutateAsync(body);
-        } catch (e) {
-            console.error(e);
-        }
-    };
-
-    const submitDeleteTag = async (body: { id: string }) => {
-        try {
-            await deleteTagMutation.mutateAsync(body);
-        } catch (e) {
-            console.error(e);
-        }
-    };
     const debounceOnChange = debounce(
         (value: string, id: string) =>
-            submitUpdateTag({
+            updateTagMutation.mutate({
                 body: {
                     label: value,
                 },
@@ -105,7 +88,12 @@ export default function EditTagsEl({ tags }: { tags: tagI[] | undefined }) {
 
     return (
         <div className={s.main_container}>
-            <h2 className={s.title}>Tags</h2>
+            <Box mt="0.5rem" mb="1.5rem">
+                <Heading fontSize="2xl" textAlign="center">
+                    Tags
+                </Heading>
+            </Box>
+
             <div className={s.content}>
                 <form
                     onSubmit={async (e) => {
@@ -152,11 +140,14 @@ export default function EditTagsEl({ tags }: { tags: tagI[] | undefined }) {
                         </InputGroup>
                     </FormControl>
                 </form>
+
                 <div className={s.tags_container}>
                     {tags?.map((tag) => (
                         <Tag
                             key={tag._id}
-                            onDelete={() => submitDeleteTag({ id: tag._id })}
+                            onDelete={() =>
+                                deleteTagMutation.mutate({ id: tag._id })
+                            }
                             label={tag.label}
                             onUpdate={(value) =>
                                 debounceOnChange(value, tag._id)

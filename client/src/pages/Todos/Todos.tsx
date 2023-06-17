@@ -7,13 +7,13 @@ import {
     todoReqBodyI,
     updateTodo,
 } from "../../api/todos.api";
-import { pagesNames, handleError } from "../../shared/utils";
+import { handleError, pagesNames } from "../../shared/utils";
 import { useNavigate } from "react-router-dom";
 import { AxiosError, AxiosResponse } from "axios";
 import {
     Button,
-    Checkbox,
     FormControl,
+    Heading,
     IconButton,
     Input,
     InputGroup,
@@ -23,33 +23,8 @@ import {
 import s from "./Todos.module.scss";
 import { HiOutlineBriefcase } from "react-icons/hi";
 import { RiDeleteBin3Line } from "react-icons/ri";
-import { ChangeEvent, useState } from "react";
-
-function CheckboxEl({
-    onChange,
-    finished,
-    title,
-}: {
-    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-    finished: boolean;
-    title: string;
-}) {
-    const [checked, setChecked] = useState(finished);
-
-    return (
-        <Checkbox
-            spacing="1rem"
-            isChecked={checked}
-            onChange={(e) => {
-                onChange(e);
-                setChecked(e.target.checked);
-            }}
-            size="lg"
-        >
-            {title}
-        </Checkbox>
-    );
-}
+import { useState } from "react";
+import CheckboxEl from "./components/CheckboxEl";
 
 export default function Todos() {
     const [todoValue, setTodoValue] = useState("");
@@ -62,6 +37,7 @@ export default function Todos() {
         queryFn: getTodos,
         onError: (err: AxiosError) =>
             handleError(err, () => navigate(`/${pagesNames.login}`)),
+        suspense: true,
     });
 
     const addTodoMutation = useMutation<
@@ -111,43 +87,23 @@ export default function Todos() {
         },
     });
 
-    const submitAddTodo = async (body: todoReqBodyI) => {
+    const submitAddTodo = (body: todoReqBodyI) => {
         setTodoValue("");
-        try {
-            await addTodoMutation.mutateAsync(body);
-        } catch (e: any) {
-            console.error(e);
-        }
-    };
-
-    const submitUpdateTodo = async (body: {
-        body: todoReqBodyI;
-        id: string;
-    }) => {
-        try {
-            await updateTodoMutation.mutateAsync(body);
-        } catch (e: any) {
-            console.error(e);
-        }
-    };
-
-    const submitDeleteTodo = async (body: { id: string }) => {
-        try {
-            await deleteTodoMutation.mutateAsync(body);
-        } catch (e: any) {
-            console.error(e);
-        }
+        addTodoMutation.mutate(body);
     };
 
     return (
-        <div className={s.main_container}>
-            <h2 className={s.title}>ToDo List</h2>
+        <div className={s.main}>
+            <Heading my="1.5rem" fontWeight={600} textAlign="center">
+                ToDo List
+            </Heading>
+
             <div className={s.content}>
                 <form
-                    onSubmit={async (e) => {
+                    onSubmit={(e) => {
                         e.preventDefault();
                         if (todoValue.trim().length) {
-                            await submitAddTodo({
+                            submitAddTodo({
                                 todo: todoValue,
                                 finished: false,
                             });
@@ -189,12 +145,13 @@ export default function Todos() {
                         </InputGroup>
                     </FormControl>
                 </form>
+
                 <div className={s.todos_container}>
                     {todosQuery.data?.map((todo) => (
                         <div className={s.todo_container} key={todo._id}>
                             <CheckboxEl
                                 onChange={(e) =>
-                                    submitUpdateTodo({
+                                    updateTodoMutation.mutate({
                                         body: {
                                             todo: todo.todo,
                                             finished: e.target.checked,
@@ -210,7 +167,7 @@ export default function Todos() {
                                 size="sm"
                                 colorScheme="blue"
                                 onClick={() =>
-                                    submitDeleteTodo({ id: todo._id })
+                                    deleteTodoMutation.mutate({ id: todo._id })
                                 }
                                 icon={<RiDeleteBin3Line fontSize="1.1rem" />}
                             />

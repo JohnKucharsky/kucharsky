@@ -1,4 +1,5 @@
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
+import { axiosInstance } from "../shared/axios";
 
 export interface tagI extends tagReqBodyI {
     _id: string;
@@ -10,35 +11,25 @@ export interface tagReqBodyI {
 }
 
 export const getTags = async () => {
-    const tags = await axios.get<tagI[]>("/api/tags", {
-        withCredentials: true,
-    });
+    const tags = await axiosInstance.get<tagI[]>("/api/tags");
 
     return tags.data;
 };
 
 export const createTag = async (body: tagReqBodyI) => {
-    return await axios.post<tagReqBodyI, AxiosResponse<tagI>>(
+    return await axiosInstance.post<tagReqBodyI, AxiosResponse<tagI>>(
         "/api/tags",
-        body,
-        {
-            withCredentials: true,
-        }
+        body
     );
 };
 
 export const updateTag = async (body: tagReqBodyI, id: string) => {
-    return await axios.post<tagReqBodyI, AxiosResponse<tagI>>(
+    return await axiosInstance.post<tagReqBodyI, AxiosResponse<tagI>>(
         `/api/tags/${id}`,
-        body,
-        {
-            withCredentials: true,
-        }
+        body
     );
 };
 
 export const deleteTag = async (id: string) => {
-    return await axios.delete(`/api/tags/${id}`, {
-        withCredentials: true,
-    });
+    return await axiosInstance.delete(`/api/tags/${id}`);
 };

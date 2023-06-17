@@ -19,6 +19,7 @@ export default function Tag({
     onUpdate: (value: string) => void;
 }) {
     const [updateTagValue, setUpdateTagValue] = useState(label);
+
     return (
         <InputGroup size="md">
             <InputLeftElement

@@ -14,10 +14,6 @@
     grid-template-columns: max-content 1fr repeat(2, max-content);
     align-items: center;
     gap: 1rem;
-    h4 {
-        font-size: 1.8rem;
-        font-weight: 600;
-    }
 }
 
 .bottom_line {
@@ -25,18 +21,13 @@
     align-items: start;
     grid-template-rows: repeat(2, max-content);
     gap: 1rem;
-    h5 {
-        font-size: 1.5rem;
-        font-weight: 500;
-    }
+
     @include up656 {
         grid-template-rows: unset;
         grid-template-columns: repeat(2, 1fr);
         gap: 2rem;
     }
 }
-
-// Todos module
 
 .main_container {
     display: grid;
