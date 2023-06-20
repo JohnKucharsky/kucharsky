@@ -42,7 +42,7 @@ export default function Tag({
 
             <InputRightElement width="2.5rem">
                 <IconButton
-                    aria-label="Search database"
+                    aria-label="delete"
                     size="xs"
                     colorScheme="blue"
                     type="submit"

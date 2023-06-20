@@ -3,7 +3,7 @@ import { Box, Image, Text, Tooltip } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { Book } from "../../../types/book";
 import BooksSkeleton from "../../../skeletons/BooksSkeleton";
-import { tooltipHelper } from "../../../shared/utils";
+import { tooltipHelper } from "../../../helpers/utils";
 
 export default function BooksListCards({
     books,
@@ -37,6 +37,7 @@ export default function BooksListCards({
                                 maxH={"10rem"}
                             />
                         </div>
+
                         <div></div>
 
                         <Box mb="0.3rem">

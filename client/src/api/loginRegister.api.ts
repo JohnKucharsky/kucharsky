@@ -3,7 +3,7 @@ import { userI } from "./profile.api";
 
 import { registerInputType } from "../pages/Register/Register";
 import { loginInputType } from "../pages/Login/Login.service";
-import { axiosInstance } from "../shared/axios";
+import { axiosInstance } from "../helpers/axios";
 
 export const registerUser = async (
     body: Omit<registerInputType, "passwordConfirmation">

@@ -23,11 +23,14 @@ import {
 import { AiOutlineTags } from "react-icons/ai";
 import { debounce } from "lodash";
 import Tag from "./Tag";
+import { useTranslation } from "react-i18next";
+import { rightInputElEnum, widthRightInputEl } from "../../../helpers/utils";
 
 export default function EditTagsEl({ tags }: { tags: tagI[] | undefined }) {
     const [tagValue, setTagValue] = useState("");
 
     const queryClient = useQueryClient();
+    const { t } = useTranslation("translation");
 
     const addTagMutation = useMutation<AxiosResponse<tagI>, void, tagReqBodyI>({
         mutationFn: (body) => createTag(body),
@@ -90,7 +93,7 @@ export default function EditTagsEl({ tags }: { tags: tagI[] | undefined }) {
         <div className={s.main_container}>
             <Box mt="0.5rem" mb="1.5rem">
                 <Heading fontSize="2xl" textAlign="center">
-                    Tags
+                    {t("tags")}
                 </Heading>
             </Box>
 
@@ -122,19 +125,21 @@ export default function EditTagsEl({ tags }: { tags: tagI[] | undefined }) {
                             <Input
                                 value={tagValue}
                                 onChange={(e) => setTagValue(e.target.value)}
-                                pr="4.5rem"
+                                pr={widthRightInputEl(rightInputElEnum.tags)}
                                 type="text"
-                                placeholder="Tags"
+                                placeholder={t("tags")}
                             />
 
-                            <InputRightElement width="4.5rem">
+                            <InputRightElement
+                                width={widthRightInputEl(rightInputElEnum.tags)}
+                            >
                                 <Button
                                     colorScheme="blue"
                                     size="sm"
                                     type="submit"
                                     isDisabled={!tagValue.trim().length}
                                 >
-                                    Add
+                                    {t("add")}
                                 </Button>
                             </InputRightElement>
                         </InputGroup>

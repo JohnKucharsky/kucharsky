@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { cardImages, choiceI } from "./MemoryGame.service";
 import Card from "./components/Card";
 import s from "./MemoryGame.module.scss";
+import { useTranslation } from "react-i18next";
 
 export default function MemoryGame() {
     const [cards, setCards] = useState<choiceI[]>([]);
@@ -9,6 +10,8 @@ export default function MemoryGame() {
     const [choiceOne, setChoiceOne] = useState<choiceI | null>(null);
     const [choiceTwo, setChoiceTwo] = useState<choiceI | null>(null);
     const [disabled, setDisabled] = useState(false);
+
+    const { t } = useTranslation("translation");
 
     const shuffleCards = () => {
         const shuffle = [...cardImages, ...cardImages]
@@ -58,11 +61,13 @@ export default function MemoryGame() {
     return (
         <div className={s.main}>
             <div className={s.wrapper}>
-                <h1>Magic Match</h1>
+                <h1>{t("magicMatch")}</h1>
                 <button className={s.new_game_button} onClick={shuffleCards}>
-                    New Game
+                    {t("newGame")}
                 </button>
-                <p>Turns: {turns}</p>
+                <p>
+                    {t("turns")}: {turns}
+                </p>
                 <div className={s.card_grid}>
                     {cards.map((card: choiceI) => (
                         <Card

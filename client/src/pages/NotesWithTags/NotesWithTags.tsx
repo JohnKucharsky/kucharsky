@@ -20,12 +20,13 @@ import ReactSelect from "react-select";
 import { useState } from "react";
 import { useQuery } from "react-query";
 import { AxiosError } from "axios";
-import { handleError, pagesNames } from "../../shared/utils";
+import { handleError, pagesNames } from "../../helpers/utils";
 import { useNavigate } from "react-router-dom";
 import { getTags } from "../../api/tags.api";
 import EditTagsEl from "./components/EditTagsEl";
 import { colourStyles } from "./NotesWithTags.service";
 import { getNotes } from "../../api/notes.api";
+import { useTranslation } from "react-i18next";
 
 export default function NotesWithTags() {
     const [search, setSearch] = useState("");
@@ -35,6 +36,7 @@ export default function NotesWithTags() {
     >([]);
 
     const navigate = useNavigate();
+    const { t } = useTranslation("translation");
 
     const tagsQuery = useQuery({
         queryKey: "tags",
@@ -63,7 +65,7 @@ export default function NotesWithTags() {
             </Modal>
 
             <div className={s.top}>
-                <Heading fontSize="3xl">Notes</Heading>
+                <Heading fontSize="3xl">{t("notes")}</Heading>
 
                 <div />
 
@@ -74,7 +76,7 @@ export default function NotesWithTags() {
                     }
                     colorScheme="blue"
                 >
-                    Create
+                    {t("create")}
                 </Button>
 
                 <Button
@@ -83,28 +85,28 @@ export default function NotesWithTags() {
                     colorScheme="blue"
                     variant="outline"
                 >
-                    Edit Tags
+                    {t("editTags")}
                 </Button>
             </div>
 
             <div className={s.bottom_line}>
                 <form>
                     <FormControl>
-                        <FormLabel ml={1}>Search</FormLabel>
+                        <FormLabel ml={1}>{t("search")}</FormLabel>
                         <InputGroup size="md">
                             <Input
                                 variant="outline"
                                 bg="#fff"
                                 value={search}
                                 onChange={(e) => setSearch(e.target.value)}
-                                placeholder="Search..."
+                                placeholder={`${t("search")}...`}
                             />
                         </InputGroup>
                     </FormControl>
                 </form>
 
                 <FormControl>
-                    <FormLabel ml={1}>Order By</FormLabel>
+                    <FormLabel ml={1}>{t("orderBy")}</FormLabel>
                     <ReactSelect
                         value={selectedTags.map((tag) => {
                             return { label: tag.label, value: tag.value };
@@ -122,7 +124,7 @@ export default function NotesWithTags() {
                                 })
                             );
                         }}
-                        placeholder="Tags..."
+                        placeholder={`${t("tags")}...`}
                         theme={(theme) => ({
                             ...theme,
                             borderRadius: 6,
@@ -178,7 +180,7 @@ export default function NotesWithTags() {
                         </Card>
                     ))
                 ) : (
-                    <div>You don&apos;t have any notes yet</div>
+                    <div>{t("noNotesPlaceholder")}</div>
                 )}
             </SimpleGrid>
         </div>

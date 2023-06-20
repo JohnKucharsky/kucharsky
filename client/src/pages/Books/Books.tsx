@@ -4,7 +4,6 @@ import {
     FormLabel,
     Input,
     InputGroup,
-    Progress,
     Select,
 } from "@chakra-ui/react";
 
@@ -22,6 +21,7 @@ import {
     orderBy,
     paginationContainerStyles,
 } from "./Books.service";
+import { useTranslation } from "react-i18next";
 
 export default function BooksList() {
     const [category, setCategory] = useState<categoriesType>("all");
@@ -31,6 +31,7 @@ export default function BooksList() {
     const { query } = useTypedSelector((s) => s.books);
 
     const dispatch = useAppDispatch();
+    const { t, i18n } = useTranslation("translation");
 
     const books = useQuery({
         queryKey: ["books", query, category, relevance, page],
@@ -44,15 +45,9 @@ export default function BooksList() {
     return (
         <div className={s.main}>
             <div className={s.inputs_container}>
-                {books.isLoading && (
-                    <div className={s.progress_abs}>
-                        <Progress size="xs" isIndeterminate />
-                    </div>
-                )}
-
                 <form className={s.form_container}>
                     <FormControl>
-                        <FormLabel>Search</FormLabel>
+                        <FormLabel>{t("search")}</FormLabel>
                         <InputGroup size="lg">
                             <Input
                                 variant="outline"
@@ -61,7 +56,11 @@ export default function BooksList() {
                                 onChange={(e) =>
                                     dispatch(setQuery(e.target.value))
                                 }
-                                placeholder="Pride and Prejudice"
+                                placeholder={
+                                    i18n.language === "en"
+                                        ? "Pride and Prejudice"
+                                        : "Война и Мир"
+                                }
                             />
                         </InputGroup>
                     </FormControl>
@@ -69,7 +68,7 @@ export default function BooksList() {
 
                 <div className={s.bottom_line}>
                     <FormControl>
-                        <FormLabel>Categories</FormLabel>
+                        <FormLabel>{t("categories")}</FormLabel>
                         <Select
                             bg="#fff"
                             variant="outline"
@@ -80,14 +79,20 @@ export default function BooksList() {
                             size="lg"
                         >
                             {categories.map((v) => (
-                                <option key={v} value={v}>
-                                    {v[0].toUpperCase() + v.slice(1)}
+                                <option
+                                    style={{
+                                        textTransform: "capitalize",
+                                    }}
+                                    key={v}
+                                    value={v}
+                                >
+                                    {t(v)}
                                 </option>
                             ))}
                         </Select>
                     </FormControl>
                     <FormControl>
-                        <FormLabel>Order By</FormLabel>
+                        <FormLabel>{t("orderBy")}</FormLabel>
                         <Select
                             bg="#fff"
                             variant="outline"
@@ -98,8 +103,14 @@ export default function BooksList() {
                             size="lg"
                         >
                             {orderBy.map((v) => (
-                                <option key={v} value={v}>
-                                    {v[0].toUpperCase() + v.slice(1)}
+                                <option
+                                    style={{
+                                        textTransform: "capitalize",
+                                    }}
+                                    key={v}
+                                    value={v}
+                                >
+                                    {t(v)}
                                 </option>
                             ))}
                         </Select>

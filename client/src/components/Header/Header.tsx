@@ -9,13 +9,16 @@ import { Link, useNavigate } from "react-router-dom";
 import { setUser } from "../../redux/profileSlice";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Links, MenuLinks } from "./components/HeaderLinks";
-import { pagesNames } from "../../shared/utils";
+import { pagesNames } from "../../helpers/utils";
+import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
 
 export default function Header() {
     const user = useTypedSelector((s) => s.profile.user);
 
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
+    const { t, i18n } = useTranslation("translation");
 
     const logoutMutation = useMutation<AxiosResponse<string>, void, unknown>(
         logout
@@ -31,11 +34,23 @@ export default function Header() {
         }
     };
 
+    useEffect(() => {
+        localStorage.setItem("lang", i18n.language);
+    }, [i18n.language]);
+
+    const langClick = () => {
+        if (i18n.language === "ru") {
+            i18n.changeLanguage("en");
+        } else {
+            i18n.changeLanguage("ru");
+        }
+    };
+
     return (
         <div className={s.main}>
             <Links />
 
-            <div className={s.up416}>
+            <div className={s.up656}>
                 <Menu>
                     <MenuButton as={Button}>
                         <GiHamburgerMenu />
@@ -52,10 +67,22 @@ export default function Header() {
                 <AiFillGithub fontSize={24} className={s.git} />
             </Link>
 
+            <Button
+                onClick={langClick}
+                size="sm"
+                colorScheme="blue"
+                variant="outline"
+                style={{
+                    textTransform: "capitalize",
+                }}
+            >
+                {i18n.language || "en"}
+            </Button>
+
             <Heading size="sm">{user?.name}</Heading>
 
             <Button onClick={onLogout} size="sm" colorScheme="blue">
-                Logout
+                {t("logout")}
             </Button>
         </div>
     );

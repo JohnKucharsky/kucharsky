@@ -1,4 +1,4 @@
-import { axiosInstance } from "../shared/axios";
+import { axiosInstance } from "../helpers/axios";
 
 export interface userI {
     id: string;

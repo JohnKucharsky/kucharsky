@@ -6,6 +6,7 @@ import s from "./Books.module.scss";
 import { getBooks } from "../../api/books.api";
 import { Button, Image, Link, Text } from "@chakra-ui/react";
 import { Book } from "../../types/book";
+import { useTranslation } from "react-i18next";
 
 export default function BookDetails() {
     const { book_id } = useParams();
@@ -18,6 +19,7 @@ export default function BookDetails() {
 
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const { t } = useTranslation("translation");
 
     return (
         <div className={s.pos_rel}>
@@ -33,7 +35,7 @@ export default function BookDetails() {
                     navigate("/app/books");
                 }}
             >
-                Back
+                {t("back")}
             </Button>
             <div className={s.book_details_container}>
                 <Image

@@ -1,18 +1,20 @@
 import s from "./NotesWithTags.module.scss";
 import { Button, Heading, Tag } from "@chakra-ui/react";
 import { useNavigate, useParams } from "react-router-dom";
-import { handleError, pagesNames } from "../../shared/utils";
+import { handleError, pagesNames } from "../../helpers/utils";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { AxiosError, AxiosResponse } from "axios";
 import { deleteNote, getNote, noteI } from "../../api/notes.api";
 import ReactMarkdown from "react-markdown";
 import { tagI } from "../../api/tags.api";
+import { useTranslation } from "react-i18next";
 
 export default function ViewNote() {
     const navigate = useNavigate();
     const queryClient = useQueryClient();
 
     const { id } = useParams();
+    const { t } = useTranslation("translation");
 
     const noteQuery = useQuery({
         queryKey: ["notes", id],
@@ -55,7 +57,7 @@ export default function ViewNote() {
                 }}
                 className={s.top}
             >
-                <Heading fontSize="3xl">View Note</Heading>
+                <Heading fontSize="3xl">{t("viewNote")}</Heading>
 
                 <div />
 
@@ -68,7 +70,7 @@ export default function ViewNote() {
                     }
                     colorScheme="blue"
                 >
-                    Edit
+                    {t("edit")}
                 </Button>
 
                 <Button
@@ -76,7 +78,7 @@ export default function ViewNote() {
                     onClick={() => submitDeleteNote({ id })}
                     colorScheme="blue"
                 >
-                    Delete
+                    {t("delete")}
                 </Button>
 
                 <Button
@@ -87,7 +89,7 @@ export default function ViewNote() {
                     colorScheme="blue"
                     variant="outline"
                 >
-                    Back
+                    {t("back")}
                 </Button>
             </div>
 

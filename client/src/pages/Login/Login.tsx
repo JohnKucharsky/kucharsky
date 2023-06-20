@@ -23,6 +23,8 @@ import { loginUser } from "../../api/loginRegister.api";
 import { useAppDispatch } from "../../redux/store";
 import { setUser } from "../../redux/profileSlice";
 import { loginInputType, validationSchemaLogin } from "./Login.service";
+import { useTranslation } from "react-i18next";
+import { rightInputElEnum, widthRightInputEl } from "../../helpers/utils";
 
 export default function Login() {
     const [show, setShow] = useState(false);
@@ -35,13 +37,16 @@ export default function Login() {
     } = useForm<loginInputType>({
         resolver: zodResolver(validationSchemaLogin),
     });
+
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+    const { t } = useTranslation("translation");
+
     const loginMutation = useMutation<
         AxiosResponse<userI>,
         void,
         loginInputType
     >((body) => loginUser(body));
-    const navigate = useNavigate();
-    const dispatch = useAppDispatch();
 
     const onSubmit = async (data: loginInputType) => {
         try {
@@ -55,7 +60,7 @@ export default function Login() {
                 ["password", "email"].map((v) => {
                     return setError(v as "email" | "password", {
                         type: "server",
-                        message: "Wrong credentials",
+                        message: t("wrongCredentials"),
                     });
                 });
             }
@@ -71,14 +76,14 @@ export default function Login() {
         <div className={s.center_login}>
             <div className={s.container}>
                 <Heading fontWeight={600} textAlign="center">
-                    Welcome back!
+                    {t("welcomeBack")}
                 </Heading>
                 <form
                     className={s.form_container}
                     onSubmit={handleSubmit(onSubmit)}
                 >
                     <FormControl isInvalid={!!errors?.email}>
-                        <FormLabel color="#6b7280">Email</FormLabel>
+                        <FormLabel color="#6b7280">{t("email")}</FormLabel>
                         <InputGroup size="lg">
                             <InputLeftElement
                                 pointerEvents="none"
@@ -101,7 +106,7 @@ export default function Login() {
                     </FormControl>
 
                     <FormControl isInvalid={!!errors?.password}>
-                        <FormLabel color="#6b7280">Password</FormLabel>
+                        <FormLabel color="#6b7280">{t("password")}</FormLabel>
                         <InputGroup size="lg">
                             <InputLeftElement
                                 pointerEvents="none"
@@ -115,19 +120,23 @@ export default function Login() {
                                 }
                             />
                             <Input
-                                pr="4.5rem"
+                                pr={widthRightInputEl(rightInputElEnum.login)}
                                 variant="filled"
                                 type={show ? "text" : "password"}
                                 {...register("password")}
                                 placeholder="******"
                             />
-                            <InputRightElement width="4.5rem">
+                            <InputRightElement
+                                width={widthRightInputEl(
+                                    rightInputElEnum.login
+                                )}
+                            >
                                 <Button
                                     h="1.75rem"
                                     size="sm"
                                     onClick={() => setShow((p) => !p)}
                                 >
-                                    {show ? "Hide" : "Show"}
+                                    {show ? t("hide") : t("show")}
                                 </Button>
                             </InputRightElement>
                         </InputGroup>
@@ -143,12 +152,12 @@ export default function Login() {
                         size="lg"
                         type="submit"
                     >
-                        Login
+                        {t("login")}
                     </Button>
                 </form>
 
                 <p className={s.divider}>
-                    <span>or</span>
+                    <span>{t("or")}</span>
                 </p>
 
                 <div className={s.button_c}>
@@ -157,7 +166,7 @@ export default function Login() {
                         variant="link"
                         colorScheme="blue"
                     >
-                        Register
+                        {t("register")}
                     </Button>
                     <span
                         style={{
@@ -169,7 +178,7 @@ export default function Login() {
                         colorScheme="blue"
                         onClick={fillFields}
                     >
-                        Test access
+                        {t("testAccess")}
                     </Button>
                 </div>
             </div>

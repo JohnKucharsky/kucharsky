@@ -1,24 +1,20 @@
-import { pagesNames } from "../../shared/utils";
+import { pagesNames } from "../../helpers/utils";
 
 export const headerLinks = [
     {
         link: `/app/${pagesNames.books}`,
-        title: "Books",
-        width: "3rem",
+        trans: "books",
     },
     {
         link: `/app/${pagesNames.todos}`,
-        title: "Todos",
-        width: "3rem",
+        trans: "todos",
     },
     {
         link: `/app/${pagesNames.notes_with_tags}`,
-        title: "NotesWithTags",
-        width: "7.5rem",
+        trans: "notesWithTags",
     },
     {
         link: `/app/${pagesNames.memory_game}`,
-        title: "MemoryGame",
-        width: "7rem",
+        trans: "memoryGame",
     },
 ];

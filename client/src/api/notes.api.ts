@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import { tagI } from "./tags.api";
-import { axiosInstance } from "../shared/axios";
+import { axiosInstance } from "../helpers/axios";
 
 export interface noteI extends Omit<noteReqBodyI, "tags"> {
     _id: string;

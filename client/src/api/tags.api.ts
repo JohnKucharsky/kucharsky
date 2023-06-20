@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import { axiosInstance } from "../shared/axios";
+import { axiosInstance } from "../helpers/axios";
 
 export interface tagI extends tagReqBodyI {
     _id: string;

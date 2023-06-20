@@ -1,4 +1,3 @@
-import { object, z } from "zod";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -23,25 +22,16 @@ import { useMutation } from "react-query";
 import { userI } from "../../api/profile.api";
 import { omit } from "lodash";
 import { AxiosResponse } from "axios";
-import { pagesNames } from "../../shared/utils";
-
-const validationSchemaRegister = object({
-    name: z
-        .string()
-        .min(3, "At least 3 characters")
-        .max(40, "Max 40 characters"),
-    email: z.string().email("Incorrect email").max(40, "Max 40 characters"),
-    password: z
-        .string()
-        .min(6, "At least 6  characters")
-        .max(40, "Max 40 characters"),
-    passwordConfirmation: z.string(),
-}).refine((data) => data.password === data.passwordConfirmation, {
-    message: "Passwords don't match",
-    path: ["passwordConfirmation"],
-});
-
-export type registerInputType = z.infer<typeof validationSchemaRegister>;
+import {
+    pagesNames,
+    rightInputElEnum,
+    widthRightInputEl,
+} from "../../helpers/utils";
+import { useTranslation } from "react-i18next";
+import {
+    registerInputType,
+    validationSchemaRegister,
+} from "./Register.service";
 
 export default function Register() {
     const [show, setShow] = useState({
@@ -56,13 +46,15 @@ export default function Register() {
     } = useForm<registerInputType>({
         resolver: zodResolver(validationSchemaRegister),
     });
+
+    const navigate = useNavigate();
+    const { t } = useTranslation("translation");
+
     const mutation = useMutation<
         AxiosResponse<userI>,
         void,
         Omit<registerInputType, "passwordConfirmation">
     >((body) => registerUser(body));
-
-    const navigate = useNavigate();
 
     const onSubmit = async (data: registerInputType) => {
         try {
@@ -74,7 +66,7 @@ export default function Register() {
             if (e?.response?.data?.code === 11000) {
                 setError("email", {
                     type: "server",
-                    message: "Email has been taken",
+                    message: t("takenEmail"),
                 });
             }
         }
@@ -84,7 +76,7 @@ export default function Register() {
         <div className={s.center_login}>
             <div className={s.container}>
                 <Heading fontWeight={600} textAlign="center">
-                    Join Us!
+                    {t("joinUs")}
                 </Heading>
 
                 <form
@@ -92,7 +84,7 @@ export default function Register() {
                     onSubmit={handleSubmit(onSubmit)}
                 >
                     <FormControl isInvalid={!!errors?.name}>
-                        <FormLabel color="#6b7280">Name</FormLabel>
+                        <FormLabel color="#6b7280">{t("name")}</FormLabel>
                         <InputGroup size="lg">
                             <InputLeftElement
                                 pointerEvents="none"
@@ -103,7 +95,7 @@ export default function Register() {
                             <Input
                                 variant="filled"
                                 {...register("name")}
-                                placeholder="John Doe"
+                                placeholder={t("johnDoe")}
                             />
                         </InputGroup>
                         <FormHelperText color="red.500">
@@ -112,7 +104,7 @@ export default function Register() {
                     </FormControl>
 
                     <FormControl isInvalid={!!errors?.email}>
-                        <FormLabel color="#6b7280">Email</FormLabel>
+                        <FormLabel color="#6b7280">{t("email")}</FormLabel>
                         <InputGroup size="lg">
                             <InputLeftElement
                                 pointerEvents="none"
@@ -135,7 +127,7 @@ export default function Register() {
                     </FormControl>
 
                     <FormControl isInvalid={!!errors?.password}>
-                        <FormLabel color="#6b7280">Password</FormLabel>
+                        <FormLabel color="#6b7280">{t("password")}</FormLabel>
                         <InputGroup size="lg">
                             <InputLeftElement
                                 pointerEvents="none"
@@ -149,13 +141,17 @@ export default function Register() {
                                 }
                             />
                             <Input
-                                pr="4.5rem"
+                                pr={widthRightInputEl(rightInputElEnum.login)}
                                 variant="filled"
                                 type={show.password ? "text" : "password"}
                                 {...register("password")}
                                 placeholder="******"
                             />
-                            <InputRightElement width="4.5rem">
+                            <InputRightElement
+                                width={widthRightInputEl(
+                                    rightInputElEnum.login
+                                )}
+                            >
                                 <Button
                                     h="1.75rem"
                                     size="sm"
@@ -168,7 +164,7 @@ export default function Register() {
                                         })
                                     }
                                 >
-                                    {show.password ? "Hide" : "Show"}
+                                    {show.password ? t("hide") : t("show")}
                                 </Button>
                             </InputRightElement>
                         </InputGroup>
@@ -178,7 +174,9 @@ export default function Register() {
                     </FormControl>
 
                     <FormControl isInvalid={!!errors?.passwordConfirmation}>
-                        <FormLabel color="#6b7280">Confirm Password</FormLabel>
+                        <FormLabel color="#6b7280">
+                            {t("confirmPassword")}
+                        </FormLabel>
                         <InputGroup size="lg">
                             <InputLeftElement
                                 pointerEvents="none"
@@ -192,13 +190,17 @@ export default function Register() {
                                 }
                             />
                             <Input
-                                pr="4.5rem"
+                                pr={widthRightInputEl(rightInputElEnum.login)}
                                 variant="filled"
                                 type={show.confirm ? "text" : "password"}
                                 {...register("passwordConfirmation")}
                                 placeholder="******"
                             />
-                            <InputRightElement width="4.5rem">
+                            <InputRightElement
+                                width={widthRightInputEl(
+                                    rightInputElEnum.login
+                                )}
+                            >
                                 <Button
                                     h="1.75rem"
                                     size="sm"
@@ -211,7 +213,7 @@ export default function Register() {
                                         })
                                     }
                                 >
-                                    {show.confirm ? "Hide" : "Show"}
+                                    {show.confirm ? t("hide") : t("show")}
                                 </Button>
                             </InputRightElement>
                         </InputGroup>
@@ -230,12 +232,12 @@ export default function Register() {
                         width="100%"
                         type="submit"
                     >
-                        Register
+                        {t("register")}
                     </Button>
                 </form>
 
                 <p className={s.divider}>
-                    <span>or</span>
+                    <span>{t("or")}</span>
                 </p>
 
                 <Button
@@ -243,7 +245,7 @@ export default function Register() {
                     variant="link"
                     colorScheme="blue"
                 >
-                    Login
+                    {t("login")}
                 </Button>
             </div>
         </div>

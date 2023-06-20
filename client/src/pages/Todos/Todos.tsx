@@ -7,7 +7,12 @@ import {
     todoReqBodyI,
     updateTodo,
 } from "../../api/todos.api";
-import { handleError, pagesNames } from "../../shared/utils";
+import {
+    handleError,
+    pagesNames,
+    rightInputElEnum,
+    widthRightInputEl,
+} from "../../helpers/utils";
 import { useNavigate } from "react-router-dom";
 import { AxiosError, AxiosResponse } from "axios";
 import {
@@ -25,12 +30,14 @@ import { HiOutlineBriefcase } from "react-icons/hi";
 import { RiDeleteBin3Line } from "react-icons/ri";
 import { useState } from "react";
 import CheckboxEl from "./components/CheckboxEl";
+import { useTranslation } from "react-i18next";
 
 export default function Todos() {
     const [todoValue, setTodoValue] = useState("");
 
     const navigate = useNavigate();
     const queryClient = useQueryClient();
+    const { t } = useTranslation("translation");
 
     const todosQuery = useQuery({
         queryKey: "todos",
@@ -95,7 +102,7 @@ export default function Todos() {
     return (
         <div className={s.main}>
             <Heading my="1.5rem" fontWeight={600} textAlign="center">
-                ToDo List
+                {t("toDoList")}
             </Heading>
 
             <div className={s.content}>
@@ -127,19 +134,23 @@ export default function Todos() {
                             <Input
                                 value={todoValue}
                                 onChange={(e) => setTodoValue(e.target.value)}
-                                pr="4.5rem"
+                                pr={widthRightInputEl(rightInputElEnum.todos)}
                                 type="text"
-                                placeholder="ToDo"
+                                placeholder={t("toDo")}
                             />
 
-                            <InputRightElement width="4.5rem">
+                            <InputRightElement
+                                width={widthRightInputEl(
+                                    rightInputElEnum.todos
+                                )}
+                            >
                                 <Button
                                     colorScheme="blue"
                                     size="sm"
                                     type="submit"
                                     isDisabled={!todoValue.trim().length}
                                 >
-                                    Add
+                                    {t("add")}
                                 </Button>
                             </InputRightElement>
                         </InputGroup>

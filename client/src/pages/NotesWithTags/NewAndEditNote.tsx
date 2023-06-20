@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import ReactSelect from "react-select";
 import { useNavigate, useParams } from "react-router-dom";
-import { handleError, pagesNames } from "../../shared/utils";
+import { handleError, pagesNames } from "../../helpers/utils";
 import { SyntheticEvent, useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getTags } from "../../api/tags.api";
@@ -24,6 +24,7 @@ import {
     updateNote,
 } from "../../api/notes.api";
 import _ from "lodash";
+import { useTranslation } from "react-i18next";
 
 export default function NewAndEditNote() {
     const { id } = useParams();
@@ -60,6 +61,7 @@ export default function NewAndEditNote() {
 
     const navigate = useNavigate();
     const queryClient = useQueryClient();
+    const { t } = useTranslation("translation");
 
     const addNoteMutation = useMutation<
         AxiosResponse<noteI>,
@@ -146,13 +148,13 @@ export default function NewAndEditNote() {
         <div className={s.main}>
             <div className={s.top}>
                 <Heading fontSize="3xl">
-                    {id ? "Edit Note" : "Create Note"}
+                    {id ? t("editNote") : t("createNote")}
                 </Heading>
 
                 <div />
 
                 <Button size="sm" onClick={onSubmit} colorScheme="blue">
-                    Save
+                    {t("save")}
                 </Button>
 
                 <Button
@@ -163,27 +165,27 @@ export default function NewAndEditNote() {
                     colorScheme="blue"
                     variant="outline"
                 >
-                    Back
+                    {t("back")}
                 </Button>
             </div>
 
             <div className={s.bottom_line}>
                 <form onSubmit={onSubmit}>
                     <FormControl>
-                        <FormLabel ml={1}>Title</FormLabel>
+                        <FormLabel ml={1}>{t("title")}</FormLabel>
                         <InputGroup size="md">
                             <Input
                                 variant="outline"
                                 bg="#fff"
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
-                                placeholder="Note Title"
+                                placeholder={t("noteTitle")}
                             />
                         </InputGroup>
                     </FormControl>
                 </form>
                 <FormControl>
-                    <FormLabel ml={1}>Select Tags</FormLabel>
+                    <FormLabel ml={1}>{t("selectTags")}</FormLabel>
                     <ReactSelect
                         value={selectedTags.map((tag) => {
                             return { label: tag.label, value: tag.value };
@@ -201,7 +203,7 @@ export default function NewAndEditNote() {
                                 })
                             );
                         }}
-                        placeholder="Tags..."
+                        placeholder={t("tags")}
                         theme={(theme) => ({
                             ...theme,
                             borderRadius: 6,
@@ -213,12 +215,12 @@ export default function NewAndEditNote() {
             </div>
 
             <Textarea
-                placeholder="Markdown text"
+                placeholder={t("markdownText")}
                 size="lg"
                 value={markdown}
                 onChange={(e) => setMarkdown(e.target.value)}
                 style={{
-                    height: "15rem",
+                    height: "20rem",
                 }}
             />
         </div>
