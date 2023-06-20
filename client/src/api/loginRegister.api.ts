@@ -1,9 +1,8 @@
 import { AxiosResponse } from "axios";
 import { userI } from "./profile.api";
-
-import { registerInputType } from "../pages/Register/Register";
 import { loginInputType } from "../pages/Login/Login.service";
 import { axiosInstance } from "../helpers/axios";
+import { registerInputType } from "../pages/Register/Register.service";
 
 export const registerUser = async (
     body: Omit<registerInputType, "passwordConfirmation">

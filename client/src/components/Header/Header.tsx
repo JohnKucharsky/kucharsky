@@ -11,7 +11,6 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { Links, MenuLinks } from "./components/HeaderLinks";
 import { pagesNames } from "../../helpers/utils";
 import { useTranslation } from "react-i18next";
-import { useEffect } from "react";
 
 export default function Header() {
     const user = useTypedSelector((s) => s.profile.user);
@@ -34,15 +33,16 @@ export default function Header() {
         }
     };
 
-    useEffect(() => {
-        localStorage.setItem("lang", i18n.language);
-    }, [i18n.language]);
-
     const langClick = () => {
+        const changeLang = (lang: "ru" | "en") => {
+            i18n.changeLanguage(lang).then(() =>
+                localStorage.setItem("lang", lang)
+            );
+        };
         if (i18n.language === "ru") {
-            i18n.changeLanguage("en");
+            changeLang("en");
         } else {
-            i18n.changeLanguage("ru");
+            changeLang("ru");
         }
     };
 

@@ -1,5 +1,4 @@
 import { IVerifyOptions, Strategy } from "passport-local";
-
 import { validPassword } from "./password";
 import { UserModel } from "../user/user.model";
 

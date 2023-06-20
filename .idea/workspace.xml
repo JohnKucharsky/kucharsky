@@ -4,45 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2baa5e39-82fe-4c89-9976-c7ea4df79e7c" name="Changes" comment="memory game and fixes">
-      <change afterPath="$PROJECT_DIR$/client/src/helpers/i18n.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/helpers/queryClient.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/Register/Register.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/routes.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/translation/en.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/translation/ru.ts" afterDir="false" />
+    <list default="true" id="2baa5e39-82fe-4c89-9976-c7ea4df79e7c" name="Changes" comment="memory game, language and fixes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/api/loginRegister.api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/api/loginRegister.api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/api/notes.api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/api/notes.api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/api/profile.api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/api/profile.api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/api/tags.api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/api/tags.api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/api/todos.api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/api/todos.api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Header/Header.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Header/Header.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Header/Header.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Header/Header.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/Header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Header/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Header/components/HeaderLinks.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Header/components/HeaderLinks.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/Books/BookDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/Books/BookDetails.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/Books/Books.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/Books/Books.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/Books/Books.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/Books/Books.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/Books/components/BooksListCards.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/Books/components/BooksListCards.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/Login/Login.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/Login/Login.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/Login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/Login/Login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/MemoryGame/MemoryGame.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/MemoryGame/MemoryGame.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/NotesWithTags/NewAndEditNote.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/NotesWithTags/NewAndEditNote.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/NotesWithTags/NotesWithTags.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/NotesWithTags/NotesWithTags.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/NotesWithTags/ViewNote.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/NotesWithTags/ViewNote.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/NotesWithTags/components/EditTagsEl.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/NotesWithTags/components/EditTagsEl.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/NotesWithTags/components/Tag.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/NotesWithTags/components/Tag.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/Register/Register.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/Register/Register.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/Todos/Todos.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/Todos/Todos.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/shared/axios.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/helpers/axios.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/shared/helpers/FallbackError.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/helpers/FallbackError.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/shared/utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/helpers/utils.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/utils/passport.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/utils/passport.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,14 +134,7 @@
       <workItem from="1686813078021" duration="383000" />
       <workItem from="1687010579262" duration="34200000" />
       <workItem from="1687159099248" duration="591000" />
-      <workItem from="1687294366572" duration="1563000" />
-    </task>
-    <task id="LOCAL-00003" summary="third commit">
-      <created>1678390470743</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1678390470743</updated>
+      <workItem from="1687294366572" duration="2891000" />
     </task>
     <task id="LOCAL-00004" summary="third commit">
       <created>1678390564234</created>
@@ -513,7 +472,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687021904254</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="memory game, language and fixes">
+      <created>1687296334094</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1687296334094</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -553,6 +519,7 @@
     <MESSAGE value="tic tac toe" />
     <MESSAGE value="notes with tags" />
     <MESSAGE value="memory game and fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="memory game and fixes" />
+    <MESSAGE value="memory game, language and fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="memory game, language and fixes" />
   </component>
 </project>
