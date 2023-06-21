@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2baa5e39-82fe-4c89-9976-c7ea4df79e7c" name="Changes" comment="memory game, language and fixes">
+    <list default="true" id="2baa5e39-82fe-4c89-9976-c7ea4df79e7c" name="Changes" comment="fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/api/loginRegister.api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/api/loginRegister.api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Header/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/utils/passport.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/utils/passport.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/routes.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/routes.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,29 +30,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "NewWatcherDialog.advanced.open": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/vanno/Desktop/todo_app_server/client",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.standard": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\vanno\\Desktop\\todo_app_server\\server\\node_modules\\prettier",
-    "settings.editor.selected.configurable": "actions.on.save",
-    "ts.external.directory.path": "C:\\Users\\vanno\\Desktop\\todo_app_server\\server\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;NewWatcherDialog.advanced.open&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/vanno/Desktop/todo_app_server/client&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Users\\vanno\\Desktop\\todo_app_server\\server\\node_modules\\prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\vanno\\Desktop\\todo_app_server\\server\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\vanno\Desktop\todo_app_server\client" />
@@ -134,14 +132,9 @@
       <workItem from="1686813078021" duration="383000" />
       <workItem from="1687010579262" duration="34200000" />
       <workItem from="1687159099248" duration="591000" />
-      <workItem from="1687294366572" duration="2891000" />
-    </task>
-    <task id="LOCAL-00004" summary="third commit">
-      <created>1678390564234</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1678390564234</updated>
+      <workItem from="1687294366572" duration="3503000" />
+      <workItem from="1687329783948" duration="2000" />
+      <workItem from="1687356292471" duration="46000" />
     </task>
     <task id="LOCAL-00005" summary="third commit">
       <created>1678391017535</created>
@@ -479,7 +472,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687296334094</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="fix">
+      <created>1687297445829</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1687297445829</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -520,6 +520,7 @@
     <MESSAGE value="notes with tags" />
     <MESSAGE value="memory game and fixes" />
     <MESSAGE value="memory game, language and fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="memory game, language and fixes" />
+    <MESSAGE value="fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix" />
   </component>
 </project>

@@ -25,9 +25,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                loader: () => {
-                    redirect(`/${pagesNames.login}`);
-                },
+                loader: () => redirect(`/${pagesNames.login}`),
             },
             {
                 path: pagesNames.login,
