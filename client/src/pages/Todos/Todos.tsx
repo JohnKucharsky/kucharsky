@@ -17,23 +17,25 @@ import { useNavigate } from "react-router-dom";
 import { AxiosError, AxiosResponse } from "axios";
 import {
     Button,
+    Collapse,
     FormControl,
     Heading,
-    IconButton,
     Input,
     InputGroup,
     InputLeftElement,
     InputRightElement,
+    useDisclosure,
 } from "@chakra-ui/react";
 import s from "./Todos.module.scss";
 import { HiOutlineBriefcase } from "react-icons/hi";
-import { RiDeleteBin3Line } from "react-icons/ri";
 import { useState } from "react";
-import CheckboxEl from "./components/CheckboxEl";
 import { useTranslation } from "react-i18next";
+import TodoItem from "./components/TodoItem";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 export default function Todos() {
     const [todoValue, setTodoValue] = useState("");
+    const { isOpen, onToggle } = useDisclosure();
 
     const navigate = useNavigate();
     const queryClient = useQueryClient();
@@ -99,6 +101,9 @@ export default function Todos() {
         addTodoMutation.mutate(body);
     };
 
+    const completedTodos = todosQuery.data?.filter((todo) => todo.finished);
+    const todoTodos = todosQuery.data?.filter((todo) => !todo.finished);
+
     return (
         <div className={s.main}>
             <Heading my="1.5rem" fontWeight={600} textAlign="center">
@@ -158,32 +163,58 @@ export default function Todos() {
                 </form>
 
                 <div className={s.todos_container}>
-                    {todosQuery.data?.map((todo) => (
-                        <div className={s.todo_container} key={todo._id}>
-                            <CheckboxEl
-                                onChange={(e) =>
+                    {todoTodos?.map((todo) => (
+                        <TodoItem
+                            key={todo._id}
+                            onChange={(checked) =>
+                                updateTodoMutation.mutate({
+                                    body: {
+                                        todo: todo.todo,
+                                        finished: checked,
+                                    },
+                                    id: todo._id,
+                                })
+                            }
+                            onDelete={() =>
+                                deleteTodoMutation.mutate({ id: todo._id })
+                            }
+                            todo={todo}
+                        />
+                    ))}
+                    {completedTodos?.length ? (
+                        <Button
+                            onClick={onToggle}
+                            width="12rem"
+                            colorScheme="blue"
+                            rightIcon={
+                                isOpen ? <IoIosArrowDown /> : <IoIosArrowUp />
+                            }
+                        >
+                            Completed Todos
+                        </Button>
+                    ) : null}
+                    <Collapse in={isOpen} animateOpacity>
+                        {completedTodos?.map((todo) => (
+                            <TodoItem
+                                key={todo._id}
+                                onChange={(checked) =>
                                     updateTodoMutation.mutate({
                                         body: {
                                             todo: todo.todo,
-                                            finished: e.target.checked,
+                                            finished: checked,
                                         },
                                         id: todo._id,
                                     })
                                 }
-                                finished={todo.finished}
-                                title={todo.todo}
-                            />
-                            <IconButton
-                                aria-label="Search database"
-                                size="sm"
-                                colorScheme="blue"
-                                onClick={() =>
-                                    deleteTodoMutation.mutate({ id: todo._id })
+                                onDelete={() =>
+                                    deleteTodoMutation.mutate({
+                                        id: todo._id,
+                                    })
                                 }
-                                icon={<RiDeleteBin3Line fontSize="1.1rem" />}
+                                todo={todo}
                             />
-                        </div>
-                    ))}
+                        ))}
+                    </Collapse>
                 </div>
             </div>
         </div>
