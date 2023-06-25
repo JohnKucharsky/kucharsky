@@ -57,4 +57,5 @@ export const enI18n = {
     magicMatch: "Magic Match",
     newGame: "New Game",
     turns: "Turns",
+    completedTodos: "Completed Todos",
 };

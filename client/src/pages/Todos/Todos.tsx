@@ -39,7 +39,7 @@ export default function Todos() {
 
     const navigate = useNavigate();
     const queryClient = useQueryClient();
-    const { t } = useTranslation("translation");
+    const { t, i18n } = useTranslation("translation");
 
     const todosQuery = useQuery({
         queryKey: "todos",
@@ -190,13 +190,13 @@ export default function Todos() {
                     {completedTodos?.length ? (
                         <Button
                             onClick={onToggle}
-                            width="12rem"
+                            width={i18n.language === "en" ? "12rem" : "13rem"}
                             colorScheme="blue"
                             rightIcon={
                                 isOpen ? <IoIosArrowDown /> : <IoIosArrowUp />
                             }
                         >
-                            Completed Todos
+                            {t("completedTodos")}
                         </Button>
                     ) : null}
                     <Collapse in={isOpen} animateOpacity>

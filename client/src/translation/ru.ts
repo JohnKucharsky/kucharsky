@@ -57,4 +57,5 @@ export const ruI18n = {
     magicMatch: "Магические Совпадения",
     newGame: "Новая Игра",
     turns: "Ходы",
+    completedTodos: "Завершенные дела",
 };
