@@ -101,6 +101,20 @@ export default function Todos() {
         addTodoMutation.mutate(body);
     };
 
+    const delTodo = (id: string) => {
+        deleteTodoMutation.mutate({ id });
+    };
+
+    const completeTodo = (id: string, finished: boolean, todo: string) => {
+        updateTodoMutation.mutate({
+            body: {
+                todo,
+                finished,
+            },
+            id,
+        });
+    };
+
     const completedTodos = todosQuery.data?.filter((todo) => todo.finished);
     const todoTodos = todosQuery.data?.filter((todo) => !todo.finished);
 
@@ -167,17 +181,9 @@ export default function Todos() {
                         <TodoItem
                             key={todo._id}
                             onChange={(checked) =>
-                                updateTodoMutation.mutate({
-                                    body: {
-                                        todo: todo.todo,
-                                        finished: checked,
-                                    },
-                                    id: todo._id,
-                                })
+                                completeTodo(todo._id, checked, todo.todo)
                             }
-                            onDelete={() =>
-                                deleteTodoMutation.mutate({ id: todo._id })
-                            }
+                            onDelete={() => delTodo(todo._id)}
                             todo={todo}
                         />
                     ))}
@@ -198,19 +204,9 @@ export default function Todos() {
                             <TodoItem
                                 key={todo._id}
                                 onChange={(checked) =>
-                                    updateTodoMutation.mutate({
-                                        body: {
-                                            todo: todo.todo,
-                                            finished: checked,
-                                        },
-                                        id: todo._id,
-                                    })
+                                    completeTodo(todo._id, checked, todo.todo)
                                 }
-                                onDelete={() =>
-                                    deleteTodoMutation.mutate({
-                                        id: todo._id,
-                                    })
-                                }
+                                onDelete={() => delTodo(todo._id)}
                                 todo={todo}
                             />
                         ))}

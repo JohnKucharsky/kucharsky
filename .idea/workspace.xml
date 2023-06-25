@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2baa5e39-82fe-4c89-9976-c7ea4df79e7c" name="Changes" comment="fix">
-      <change afterPath="$PROJECT_DIR$/client/src/pages/Todos/components/TodoItem.tsx" afterDir="false" />
+    <list default="true" id="2baa5e39-82fe-4c89-9976-c7ea4df79e7c" name="Changes" comment="completed todos hidden">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/pages/Todos/Todos.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/Todos/Todos.tsx" afterDir="false" />
     </list>
@@ -137,14 +136,7 @@
       <workItem from="1687329783948" duration="2000" />
       <workItem from="1687356292471" duration="254000" />
       <workItem from="1687418188004" duration="44000" />
-      <workItem from="1687686723711" duration="3211000" />
-    </task>
-    <task id="LOCAL-00006" summary="third commit">
-      <created>1678391422493</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1678391422493</updated>
+      <workItem from="1687686723711" duration="3792000" />
     </task>
     <task id="LOCAL-00007" summary="third commit">
       <created>1678391779715</created>
@@ -482,7 +474,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687356348002</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="completed todos hidden">
+      <created>1687692306914</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1687692306915</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -524,6 +523,7 @@
     <MESSAGE value="memory game and fixes" />
     <MESSAGE value="memory game, language and fixes" />
     <MESSAGE value="fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix" />
+    <MESSAGE value="completed todos hidden" />
+    <option name="LAST_COMMIT_MESSAGE" value="completed todos hidden" />
   </component>
 </project>
